@@ -74,10 +74,18 @@ module  lab8 		( input         CLOCK_50,
 										 .Reset(Reset_h)
 	 );
 	 
-	 //The connections for nios_system might be named different depending on how you set up Qsys
-	 nios_system nios_system(
-										 .clk_clk(Clk),         
-										 .reset_reset_n(KEY[0]),   
+	 //The connections for nios_system might be named different depending on how you set up Qsys ~~~Seems good (Jacob)
+	 lab8_soc nios_system(
+										 .clk_clk(Clk),
+										 .keycode_export(keycode),  
+										 .otg_hpi_address_export(hpi_addr),
+										 .otg_hpi_cs_export(hpi_cs),
+										 .otg_hpi_data_in_port(hpi_data_in),
+										 .otg_hpi_data_out_port(hpi_data_out),
+										 .otg_hpi_r_export(hpi_r),
+										 .otg_hpi_w_export(hpi_w),
+										 .reset_reset_n(KEY[0]),
+										 .sdram_clk_clk(DRAM_CLK),  
 										 .sdram_wire_addr(DRAM_ADDR), 
 										 .sdram_wire_ba(DRAM_BA),   
 										 .sdram_wire_cas_n(DRAM_CAS_N),
@@ -86,22 +94,14 @@ module  lab8 		( input         CLOCK_50,
 										 .sdram_wire_dq(DRAM_DQ),   
 										 .sdram_wire_dqm(DRAM_DQM),  
 										 .sdram_wire_ras_n(DRAM_RAS_N),
-										 .sdram_wire_we_n(DRAM_WE_N), 
-										 .sdram_out_clk(DRAM_CLK),
-										 .keycode_export(keycode),  
-										 .otg_hpi_address_export(hpi_addr),
-										 .otg_hpi_data_in_port(hpi_data_in),
-										 .otg_hpi_data_out_port(hpi_data_out),
-										 .otg_hpi_cs_export(hpi_cs),
-										 .otg_hpi_r_export(hpi_r),
-										 .otg_hpi_w_export(hpi_w));
+										 .sdram_wire_we_n(DRAM_WE_N));
 	
 	//Fill in the connections for the rest of the modules 
-    vga_controller vgasync_instance();
+    //vga_controller vgasync_instance(); ~~~ I commented out (Jacob)
    
-    ball ball_instance();
+    //ball ball_instance(); ~~~ I commented out (Jacob)
    
-    color_mapper color_instance();
+    //color_mapper color_instance(); ~~~ I commented out (Jacob)
 										  
 	 HexDriver hex_inst_0 (keycode[3:0], HEX0);
 	 HexDriver hex_inst_1 (keycode[7:4], HEX1);

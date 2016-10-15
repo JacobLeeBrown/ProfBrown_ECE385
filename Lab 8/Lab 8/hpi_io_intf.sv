@@ -11,30 +11,31 @@ logic [15:0] tmp_data;
 logic from_sw_int; 
 
 //Fill in the blanks below. 
-assign OTG_RST_N = 
-assign OTG_DATA = //Should be tristated
+// ~~~ All following ocmmented lines are commented for the sake of compilation (Jacob)
+// assign OTG_RST_N = 
+// assign OTG_DATA = //Should be tristated
 
-always_ff @ (posedge Clk or posedge Reset)
-begin
-	if(Reset)
-	begin
-		tmp_data 		<= 
-		OTG_ADDR 		<=	 
-		OTG_RD_N 		<= 
-		OTG_WR_N 		<= 
-		OTG_CS_N 		<= 
-		from_sw_data_in<= 
-		from_sw_int 	<= 
-	end
-	else 
-	begin
-		tmp_data 		<= 
-		OTG_ADDR 		<= 
-		OTG_RD_N			<= 
-		OTG_WR_N			<= 
-		OTG_CS_N			<= 
-		from_sw_data_in<= 
-		from_sw_int 	<= 
-	end
-end
+//always_ff @ (posedge Clk or posedge Reset)
+//begin
+//	if(Reset)
+//	begin
+//		tmp_data 		<= 
+//		OTG_ADDR 		<=	2b'0;
+//		OTG_RD_N 		<= 0;
+//		OTG_WR_N 		<= 0;
+//		OTG_CS_N 		<= 0;
+//		from_sw_data_in<= 0;
+//		from_sw_int 	<= 
+//	end
+//	else 
+//	begin
+//		tmp_data 		<= 
+//		OTG_ADDR 		<= 
+//		OTG_RD_N			<= 
+//		OTG_WR_N			<= 
+//		OTG_CS_N			<= 
+//		from_sw_data_in<= 
+//		from_sw_int 	<= 
+//	end
+//end
 endmodule 
