@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 16:02:07 **** Build of configuration Nios II for project usb_kb_bsp ****
 make all 
 [BSP build complete]
 
 16:02:08 Build Finished (took 741ms)
+=======
+14:08:54 **** Clean-only build of configuration Nios II for project usb_kb_bsp ****
+make clean 
+[BSP clean complete]
+
+14:08:54 Build Finished (took 289ms)
+>>>>>>> e0162d4a24048d3386d513445284f9e246968d30
 

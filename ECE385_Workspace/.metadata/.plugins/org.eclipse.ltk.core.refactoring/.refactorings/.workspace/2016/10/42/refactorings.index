@@ -1,6 +1,9 @@
 1476558390599	Delete resource 'usb_kb'
 1476558395520	Delete resource 'usb_kb_bsp'
+<<<<<<< HEAD
 1476560218622	Delete resource 'usb_kb'
 1476560220861	Delete resource 'usb_kb_bsp'
 1476560711482	Delete resource 'usb_kb_bsp'
 1476560715085	Delete resource 'usb_kb'
+=======
+>>>>>>> e0162d4a24048d3386d513445284f9e246968d30

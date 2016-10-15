@@ -1,3 +1,18 @@
-16:02:29 **** Clean-only build of configuration Nios II for project lab7_app_bsp ****
+16:05:58 **** Clean-only build of configuration Nios II for project lab7_app_bsp ****
+make clean 
+[BSP clean complete]
+16:06:04 **** Clean-only build of configuration Nios II for project lab7_app ****
+make clean 
+[lab7_app clean complete]
+13:44:08 **** Clean-only build of configuration Nios II for project usb_kb ****
+make clean 
+[usb_kb clean complete]
+13:47:04 **** Clean-only build of configuration Nios II for project usb_kb_bsp ****
+make clean 
+[BSP clean complete]
+14:07:21 **** Clean-only build of configuration Nios II for project usb_kb ****
+make clean 
+[usb_kb clean complete]
+14:08:54 **** Clean-only build of configuration Nios II for project usb_kb_bsp ****
 make clean 
 [BSP clean complete]

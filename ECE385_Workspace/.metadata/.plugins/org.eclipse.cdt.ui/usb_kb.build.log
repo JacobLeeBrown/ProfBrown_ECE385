@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 16:01:57 **** Build of configuration Nios II for project usb_kb ****
 make all 
 Info: Building ../usb_kb_bsp/
@@ -206,4 +207,11 @@ nios2-elf-objdump --disassemble --syms --all-header --source usb_kb.elf >usb_kb.
 [usb_kb build complete]
 
 16:02:07 Build Finished (took 10s.616ms)
+=======
+14:07:21 **** Clean-only build of configuration Nios II for project usb_kb ****
+make clean 
+[usb_kb clean complete]
+
+14:07:21 Build Finished (took 482ms)
+>>>>>>> e0162d4a24048d3386d513445284f9e246968d30
 

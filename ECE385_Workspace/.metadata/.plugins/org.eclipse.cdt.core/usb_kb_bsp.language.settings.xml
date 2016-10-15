@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project>
+<<<<<<< HEAD:ECE385_Workspace/.metadata/.plugins/org.eclipse.cdt.core/usb_kb_bsp.language.settings.xml
 	<configuration id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1864120575" name="Nios II">
+=======
+	<configuration id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1102761985" name="Nios II">
+>>>>>>> e0162d4a24048d3386d513445284f9e246968d30:ECE385_Workspace/.metadata/.plugins/org.eclipse.cdt.core/usb_kb_bsp.language.settings.xml
 		<extension point="org.eclipse.cdt.core.LanguageSettingsProvider">
 			<provider id="altera.tool.Nios2GCCBuiltinSpecsDetector">
 				<language id="org.eclipse.cdt.core.gcc">
