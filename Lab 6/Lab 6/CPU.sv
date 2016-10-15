@@ -1,0 +1,101 @@
+module CPU(	input 	logic	Clk, Reset, Run, Continue,
+			input	[15:0]	D_CPU_out,
+			output 	logic  	CE, UB, LB, OE, WE,
+			output	wire 	[15:0]	MDR_out,
+			output 	[11:0] 	LED,
+			output 	[19:0] 	ADDR,
+			inout 	[15:0]  Bus_Data,
+			output [6:0] HEX0, HEX1, HEX2, HEX3
+);
+			
+						
+logic Reset_ah, Run_ah, Continue_ah; 
+assign Reset_ah = ~Reset;
+assign Continue_ah = ~Continue;
+assign Run_ah = ~Run;
+
+// For PC Unit
+logic 	[15:0] 	Added_ADDR;
+logic		[15:0] 	PC_out;
+
+logic LD_MAR, LD_MDR, LD_IR, LD_BEN, LD_CC, LD_REG, LD_PC, LD_LED;
+logic GatePC, GateMDR, GateALU, GateMARMUX;
+logic SR2MUX, ADDR1MUX, MARMUX, MIO_EN, DRMUX, SR1MUX;
+logic BEN;
+logic [1:0] PCMUX, ADDR2MUX, ALUK;
+// logic [15:0] D_CPU_out;
+logic [15:0] MAR_out, IR; // MDR_out,
+logic [15:0] Data_Mem_In, Data_Mem_Out;
+
+// For between Register Unit and ALU
+logic [15:0] SR1_out, SR2_MUX_out;
+// For between ALU and mux_databus
+logic [15:0] ALU_out;
+// For between AddrU and PCU and mux_databus
+logic [15:0] Addr_out;
+
+assign ADDR = {4'b0, MAR_out};
+assign MIO_EN = ~OE;
+
+ISDU state_controller(
+			.*, 
+			.Reset(Reset_ah), 
+			.Run(Run_ah), 
+			.Continue(Continue_ah), 
+			.ContinueIR(Continue_ah),
+			.Opcode(IR[15:12]),
+			.IR_5(IR[5]),
+			.Mem_CE(CE), 
+			.Mem_UB(UB), 
+			.Mem_LB(LB), 
+			.Mem_OE(OE), 
+			.Mem_WE(WE)
+);
+
+mux_databus d0 (.GatePC(GatePC), 
+			.GateMDR(GateMDR), 
+			.GateALU(GateALU), 
+			.GateMARMUX(GateMARMUX), 
+			.PC(PC_out), 
+			.MDR(MDR_out), 
+			.ALU(ALU_out),
+			.MARMUX(Addr_out),
+			//****This***** is also only for Lab 6.1 exclusively 
+			.D_out(Bus_Data));
+
+// PC Unit
+PCU PC_unit(.*); // Clk, Reset_ah, LD_PC, PCMUX, Addr_out, PC_out, Bus_Data
+
+// MDR Unit
+MDRU MDR_Unit(.*); // Clk, Reset_ah, LD_MDR, MIO_EN, D_CPU_out, MDR_out, Bus_Data
+
+// Register Unit
+RegU Reg_Unit(.*); // Clk, Reset_ah, LD_REG, Bus_Data, IR, DRMUX, SR1MUX, SR2MUX, SR1_out, SR2_MUX_out
+
+// Arithmetic Logic Unit
+ALU AL_Unit(.ALUK, .A(SR1_out), .B(SR2_MUX_out), .ALU_out);
+
+// Address Modifier Unit
+AddrU Addr_U(.*); // IR, SR1_out, PC, ADDR1MUX, ADDR2MUX, Addr_out
+
+// NZP Unit
+NZPU NZP_U(.*, .NZP(Bus_Data[11:9])); // Clk, Reset_ah, LD_CC, LD_BEN, Bus_Data, NZP, BEN
+
+/* Other Registers */
+// IR
+reg_16	IR_Reg(.Clk, .Reset(Reset_ah), .Load(LD_IR), .D_in(Bus_Data),  .D_out(IR));
+// MAR
+reg_16	MAR_Reg(.Clk, .Reset(Reset_ah), .Load(LD_MAR), .D_in(Bus_Data),  .D_out(MAR_out));
+	
+assign LED[9:0] = PC_out[9:0];
+assign LED[11:10] = IR[11:10];
+
+
+//Send IR to HEX
+assign HEX0 = IR[3:0];
+assign HEX1 = IR[7:4];
+assign HEX2 = IR[11:8];
+assign HEX3 = IR[15:12];
+
+	
+endmodule

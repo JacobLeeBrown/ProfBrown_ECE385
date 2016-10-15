@@ -1,0 +1,1030 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Michael/Desktop/Lab7/simulation/modelsim
+valtera_avalon_sc_fifo
+Z1 !s110 1475961241
+!i10b 1
+!s100 2@;YleiQS51@UMb7^^WbN1
+I<gE^2l__CRNBHLVU=eD[:0
+Z2 V`JN@9S9cnhjKRR_L]QIcM3
+R0
+Z3 w1475949220
+8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_avalon_sc_fifo.v
+FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_avalon_sc_fifo.v
+Z4 L0 21
+Z5 OV;L;10.3d;59
+r1
+!s85 0
+31
+!s108 1475961241.954000
+!s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_avalon_sc_fifo.v|
+!s90 -reportprogress|300|-vlog01compat|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_avalon_sc_fifo.v|
+!i113 1
+Z6 o-vlog01compat -work nios_system
+Z7 !s92 -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules
+valtera_avalon_st_clock_crosser
+Z8 !s110 1475961247
+!i10b 1
+!s100 _kMN<BJ0mkgSFXTW`85Bh2
+IGQm:kgWA8DcXcnmo[C9;J0
+R2
+R0
+Z9 w1475949221
+8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_avalon_st_clock_crosser.v
+FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_avalon_st_clock_crosser.v
+L0 22
+R5
+r1
+!s85 0
+31
+!s108 1475961247.783000
+!s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_avalon_st_clock_crosser.v|
+!s90 -reportprogress|300|-vlog01compat|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_avalon_st_clock_crosser.v|
+!i113 1
+R6
+R7
+valtera_avalon_st_handshake_clock_crosser
+R8
+!i10b 1
+!s100 <TeLS^R[XXnBHVSJ0:LXK0
+I3;oFEII>DAe1knV_L85dG0
+R2
+R0
+R9
+8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_avalon_st_handshake_clock_crosser.v
+FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_avalon_st_handshake_clock_crosser.v
+Z10 L0 24
+R5
+r1
+!s85 0
+31
+!s108 1475961247.350000
+!s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_avalon_st_handshake_clock_crosser.v|
+!s90 -reportprogress|300|-vlog01compat|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_avalon_st_handshake_clock_crosser.v|
+!i113 1
+R6
+R7
+valtera_merlin_width_adapter
+Z11 DXx6 sv_std 3 std 0 22 <EOTafDcUY:cQeO^ICn]m3
+!s110 1475961248
+!i10b 1
+!s100 g=LN@e0hT7O1f_GYh[W>G3
+IOlKAMOCGGic<h:Q46DhoZ1
+R2
+!s105 altera_merlin_width_adapter_sv_unit
+S1
+R0
+R9
+8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_merlin_width_adapter.sv
+FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_merlin_width_adapter.sv
+L0 25
+R5
+r1
+!s85 0
+31
+!s108 1475961248.181000
+!s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_merlin_width_adapter.sv|
+!s90 -reportprogress|300|-sv|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_merlin_width_adapter.sv|
+!i113 1
+Z12 o-sv -work nios_system
+Z13 !s92 -sv -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules
+valtera_reset_controller
+Z14 !s110 1475961240
+!i10b 1
+!s100 VEhLaE^KT@RiagZkfkKI93
+I4]2Q>_;_b9f9]>P8e=^FB2
+R2
+R0
+Z15 w1475949201
+8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_reset_controller.v
+FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_reset_controller.v
+L0 42
+R5
+r1
+!s85 0
+31
+!s108 1475961240.842000
+!s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_reset_controller.v|
+!s90 -reportprogress|300|-vlog01compat|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_reset_controller.v|
+!i113 1
+R6
+R7
+valtera_reset_synchronizer
+R1
+!i10b 1
+!s100 UTD:?4E=?>;X@do<;V;hQ1
+IS0N58Caa@3dki_>7TLRiO3
+R2
+R0
+R15
+8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_reset_synchronizer.v
+FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_reset_synchronizer.v
+R10
+R5
+r1
+!s85 0
+31
+!s108 1475961241.065000
+!s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_reset_synchronizer.v|
+!s90 -reportprogress|300|-vlog01compat|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_reset_synchronizer.v|
+!i113 1
+R6
+R7
+vnios_system
+R14
+!i10b 1
+!s100 4NAnUJ=NMkJaUNzmI_lXj3
+IX`;<5BcHkz5[l2kUcz2RA2
+R2
+R0
+w1475949182
+8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/nios_system.v
+FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/nios_system.v
+L0 6
+R5
+r1
+!s85 0
+31
+!s108 1475961240.478000
+!s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/nios_system.v|
+!s90 -reportprogress|300|-vlog01compat|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/nios_system.v|
+!i113 1
+R6
+!s92 -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis
+vnios_system_irq_mapper
+R11
+Z16 !s110 1475961246
+!i10b 1
+!s100 Q]I?DnGhDCMXj74:HEI4e2
+I>@Dn?3mZTfB2GUZLFMgeg1
+R2
+!s105 nios_system_irq_mapper_sv_unit
+S1
+R0
+R15
+8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_irq_mapper.sv
+FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_irq_mapper.sv
+L0 31
+R5
+r1
+!s85 0
+31
+!s108 1475961246.068000
+!s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_irq_mapper.sv|
+!s90 -reportprogress|300|-sv|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_irq_mapper.sv|
+!i113 1
+R12
+R13
+vnios_system_led
+Z17 !s110 1475961245
+!i10b 1
+!s100 =mMVmK=Eh1V1YSlIZcQkC2
+IAQF=;M_<_WlkTiF0iTh990
+R2
+R0
+Z18 w1475949184
+8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_led.v
+FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_led.v
+R4
+R5
+r1
+!s85 0
+31
+!s108 1475961245.733000
+!s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_led.v|
+!s90 -reportprogress|300|-vlog01compat|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_led.v|
+!i113 1
+R6
+R7
+vnios_system_mm_interconnect_0
+R1
+!i10b 1
+!s100 =gJikW19iA<I7lIX0`F5Q3
+IlCdbDgD=0C0C<edV6HH6;0
+R2
+R0
+R15
+8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0.v
+FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0.v
+L0 9
+R5
+r1
+!s85 0
+31
+!s108 1475961241.276000
+!s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0.v|
+!s90 -reportprogress|300|-vlog01compat|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0.v|
+!i113 1
+R6
+R7
+vnios_system_mm_interconnect_0_avalon_st_adapter
+R1
+!i10b 1
+!s100 bB`0U][J6Ta7W15AOY]kI0
+IDZQI8]`0gAz9X:LD0oV]e1
+R2
+R0
+R9
+8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter.v
+FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter.v
+L0 9
+R5
+r1
+!s85 0
+31
+!s108 1475961241.752000
+!s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter.v|
+!s90 -reportprogress|300|-vlog01compat|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter.v|
+!i113 1
+R6
+R7
+vnios_system_mm_interconnect_0_avalon_st_adapter_005
+R1
+!i10b 1
+!s100 VD^fLL9QKo7T_[kA<DC8T0
+Id4bMO0h<_Qj_ZfP=>a2kH2
+R2
+R0
+R9
+8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter_005.v
+FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter_005.v
+L0 9
+R5
+r1
+!s85 0
+31
+!s108 1475961241.545000
+!s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter_005.v|
+!s90 -reportprogress|300|-vlog01compat|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter_005.v|
+!i113 1
+R6
+R7
+vnios_system_mm_interconnect_0_avalon_st_adapter_005_error_adapter_0
+R11
+R16
+!i10b 1
+!s100 g4^aFFTB]F3jkm>j];`]T1
+IB<0H0=XVg7ZkkLmlATjO53
+R2
+!s105 nios_system_mm_interconnect_0_avalon_st_adapter_005_error_adapter_0_sv_unit
+S1
+R0
+R9
+8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter_005_error_adapter_0.sv
+FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter_005_error_adapter_0.sv
+Z19 L0 66
+R5
+r1
+!s85 0
+31
+!s108 1475961246.562000
+!s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter_005_error_adapter_0.sv|
+!s90 -reportprogress|300|-sv|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter_005_error_adapter_0.sv|
+!i113 1
+R12
+R13
+vnios_system_mm_interconnect_0_avalon_st_adapter_error_adapter_0
+R11
+R16
+!i10b 1
+!s100 b5MC7IN[92h@f=T203cnn2
+IU:B9D_a61:6WWa4ZaffkJ3
+R2
+!s105 nios_system_mm_interconnect_0_avalon_st_adapter_error_adapter_0_sv_unit
+S1
+R0
+R9
+8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv
+FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv
+R19
+R5
+r1
+!s85 0
+31
+!s108 1475961246.924000
+!s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv|
+!s90 -reportprogress|300|-sv|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv|
+!i113 1
+R12
+R13
+vnios_system_nios2_gen2_0
+Z20 !s110 1475961243
+!i10b 1
+!s100 UdX8`PhA@Q@bDCgPEKjoT0
+IB5FFb:R@fX<I3_RYif8YO2
+R2
+R0
+R18
+8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0.v
+FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0.v
+L0 9
+R5
+r1
+!s85 0
+31
+!s108 1475961243.096000
+!s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0.v|
+!s90 -reportprogress|300|-vlog01compat|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0.v|
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu
+R20
+!i10b 1
+!s100 n9C___iheBT[e82H[LYoH2
+IOV`nTh]TL9R6K16=8]1;02
+R2
+R0
+R3
+Z21 8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu.v
+Z22 FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu.v
+L0 2981
+R5
+r1
+!s85 0
+31
+Z23 !s108 1475961243.330000
+Z24 !s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu.v|
+Z25 !s90 -reportprogress|300|-vlog01compat|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu.v|
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_debug_slave_sysclk
+Z26 !s110 1475961244
+!i10b 1
+!s100 Ka][JnPo66AA_=90J7n`Y3
+I5nJD4?8m>kdFz>>Pc4kA_1
+R2
+R0
+R3
+8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_debug_slave_sysclk.v
+FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_debug_slave_sysclk.v
+R4
+R5
+r1
+!s85 0
+31
+!s108 1475961244.125000
+!s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_debug_slave_sysclk.v|
+!s90 -reportprogress|300|-vlog01compat|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_debug_slave_sysclk.v|
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_debug_slave_tck
+R26
+!i10b 1
+!s100 BB8AWSVE]6Ue`kgJcH@9]3
+ISIdGPICVz`feFA]=lf8<V1
+R2
+R0
+R3
+8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_debug_slave_tck.v
+FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_debug_slave_tck.v
+R4
+R5
+r1
+!s85 0
+31
+!s108 1475961244.554000
+!s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_debug_slave_tck.v|
+!s90 -reportprogress|300|-vlog01compat|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_debug_slave_tck.v|
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_debug_slave_wrapper
+R17
+!i10b 1
+!s100 MKJJUGJM6BQXKooF4MD8W2
+Ic]fP4o28Mkg^V9lFg0eZa2
+R2
+R0
+R3
+8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_debug_slave_wrapper.v
+FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_debug_slave_wrapper.v
+R4
+R5
+r1
+!s85 0
+31
+!s108 1475961245.008000
+!s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_debug_slave_wrapper.v|
+!s90 -reportprogress|300|-vlog01compat|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_debug_slave_wrapper.v|
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_nios2_avalon_reg
+R20
+!i10b 1
+!s100 11<GSl5g9jUR0^7Z1Jj0E0
+I5L_aVo]hWYZI:ak2h6?_80
+R2
+R0
+R3
+R21
+R22
+L0 2177
+R5
+r1
+!s85 0
+31
+R23
+R24
+R25
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_nios2_oci
+R20
+!i10b 1
+!s100 G<lI>b09Hg:@gMcU@YK0Z1
+IS6a?6OCQ>=mMSok25_6n@3
+R2
+R0
+R3
+R21
+R22
+L0 2510
+R5
+r1
+!s85 0
+31
+R23
+R24
+R25
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_nios2_oci_break
+R20
+!i10b 1
+!s100 J70foezVa7?<57W[l@f673
+IBdlo]7EON6>1XW@bCdK792
+R2
+R0
+R3
+R21
+R22
+L0 292
+R5
+r1
+!s85 0
+31
+R23
+R24
+R25
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_nios2_oci_compute_input_tm_cnt
+R20
+!i10b 1
+!s100 zLmT3znRhd`RPLcaV?QYD1
+IE`XX^Va<ZOOI>;U7SZTRI0
+R2
+R0
+R3
+R21
+R22
+L0 1426
+R5
+r1
+!s85 0
+31
+R23
+R24
+R25
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_nios2_oci_dbrk
+R20
+!i10b 1
+!s100 ?9c=?2Y36iXABa=DR0FNV3
+IkRGXIE:UgBBI2OoA61[UW0
+R2
+R0
+R3
+R21
+R22
+L0 790
+R5
+r1
+!s85 0
+31
+R23
+R24
+R25
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_nios2_oci_debug
+R20
+!i10b 1
+!s100 ;i>VVD1IK1P[]BcR1McZn1
+IW]oU[oUcWCk0ISN2@oh;l3
+R2
+R0
+R3
+R21
+R22
+L0 151
+R5
+r1
+!s85 0
+31
+R23
+R24
+R25
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_nios2_oci_dtrace
+R20
+!i10b 1
+!s100 91D:5zeWTMlE0YCalnSMU0
+IFciIeGUbU@]ALDJ<cKG=13
+R2
+R0
+R3
+R21
+R22
+L0 1345
+R5
+r1
+!s85 0
+31
+R23
+R24
+R25
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_nios2_oci_fifo
+R20
+!i10b 1
+!s100 mJlk_egI2DVR1MIPN>Vd23
+IAGM<=Sz1NUd0kd^LzcNGC1
+R2
+R0
+R3
+R21
+R22
+L0 1585
+R5
+r1
+!s85 0
+31
+R23
+R24
+R25
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_nios2_oci_fifo_cnt_inc
+R20
+!i10b 1
+!s100 79bFGbmWVbj[`1P@d[<XJ0
+I5ZBLYG[OQjV8WFc?XC=Ej0
+R2
+R0
+R3
+R21
+R22
+L0 1539
+R5
+r1
+!s85 0
+31
+R23
+R24
+R25
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_nios2_oci_fifo_wrptr_inc
+R20
+!i10b 1
+!s100 QN?bRP7=WFYfko[zIYQE;3
+IX=<bzRRghR9?628LCC4MU0
+R2
+R0
+R3
+R21
+R22
+L0 1497
+R5
+r1
+!s85 0
+31
+R23
+R24
+R25
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_nios2_oci_im
+R20
+!i10b 1
+!s100 2U`X@9nM0R5jHnTjY^oEo3
+ID`3^FQF`?Hb=C:YcPN3Yl0
+R2
+R0
+R3
+R21
+R22
+L0 2092
+R5
+r1
+!s85 0
+31
+R23
+R24
+R25
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_nios2_oci_itrace
+R20
+!i10b 1
+!s100 S@EV:0ME02]@7]a1VUXcI3
+IgoTmZ44>nE<Q1[[H=Sgl<3
+R2
+R0
+R3
+R21
+R22
+L0 976
+R5
+r1
+!s85 0
+31
+R23
+R24
+R25
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_nios2_oci_pib
+R20
+!i10b 1
+!s100 5L9eWK:7FiMY3k:oziVWI2
+Ig5^mmDV_?K:`U]3R<h?i@0
+R2
+R0
+R3
+R21
+R22
+L0 2070
+R5
+r1
+!s85 0
+31
+R23
+R24
+R25
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_nios2_oci_td_mode
+R20
+!i10b 1
+!s100 Hzgkn]BF`8PK7@`QIP:8T1
+IBO]iQXEAkn]UO7P85e>UB1
+R2
+R0
+R3
+R21
+R22
+L0 1278
+R5
+r1
+!s85 0
+31
+R23
+R24
+R25
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_nios2_oci_xbrk
+R20
+!i10b 1
+!s100 Gg`ONGUA^Azhh3fVQPo=?3
+IYYOKRHb=21@ZKd=GgT>4f3
+R2
+R0
+R3
+R21
+R22
+L0 584
+R5
+r1
+!s85 0
+31
+R23
+R24
+R25
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_nios2_ocimem
+R20
+!i10b 1
+!s100 ]D6MBm9MhTbMQBzQCDd=E0
+IZm?8XUS29A7Q49H^]jOIP2
+R2
+R0
+R3
+R21
+R22
+L0 2332
+R5
+r1
+!s85 0
+31
+R23
+R24
+R25
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_nios2_performance_monitors
+R20
+!i10b 1
+!s100 N0Hh7KQccb`aTCCIk:1jQ1
+IA=MmzHaEI[l@7jia7FWmV1
+R2
+R0
+R3
+R21
+R22
+L0 2161
+R5
+r1
+!s85 0
+31
+R23
+R24
+R25
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_ociram_sp_ram_module
+R20
+!i10b 1
+!s100 zE:@4lMP0QRZ^4RRVj]Ze2
+I3`GY5IZ@l]49aFli]`B6f1
+R2
+R0
+R3
+R21
+R22
+L0 2269
+R5
+r1
+!s85 0
+31
+R23
+R24
+R25
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_register_bank_a_module
+R20
+!i10b 1
+!s100 M9Nf?zILhXCfY]a=a=BZo2
+I;::2kHHFLLLRzl^0<bjk81
+R2
+R0
+R3
+R21
+R22
+R4
+R5
+r1
+!s85 0
+31
+R23
+R24
+R25
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_register_bank_b_module
+R20
+!i10b 1
+!s100 KU?DhVO:0B>`i:baW6ORZ2
+IN0GUl7b:DdgkIgLU2T<eG2
+R2
+R0
+R3
+R21
+R22
+L0 86
+R5
+r1
+!s85 0
+31
+R23
+R24
+R25
+!i113 1
+R6
+R7
+vnios_system_nios2_gen2_0_cpu_test_bench
+R17
+!i10b 1
+!s100 CnTA>3RV`Hk0E?0AZGdOC3
+I<n<R[h5==PEFb01WKT5Cf0
+R2
+R0
+R3
+8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_test_bench.v
+FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_test_bench.v
+R4
+R5
+r1
+!s85 0
+31
+!s108 1475961245.367000
+!s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_test_bench.v|
+!s90 -reportprogress|300|-vlog01compat|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_test_bench.v|
+!i113 1
+R6
+R7
+vnios_system_onchip_memory2_0
+Z27 !s110 1475961242
+!i10b 1
+!s100 4PCj?YoC^C?E<E^b72]Y_2
+IkGEhih?SIeDcQ9LLda=Q:3
+R2
+R0
+w1475949185
+8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_onchip_memory2_0.v
+FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_onchip_memory2_0.v
+R4
+R5
+r1
+!s85 0
+31
+!s108 1475961242.848000
+!s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_onchip_memory2_0.v|
+!s90 -reportprogress|300|-vlog01compat|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_onchip_memory2_0.v|
+!i113 1
+R6
+R7
+vnios_system_sdram
+R27
+!i10b 1
+!s100 of_MULNB<>@38meCU_J_z3
+I]Qnh_5VOAVW_nORHFI;4U3
+R2
+R0
+Z28 w1475949187
+Z29 8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_sdram.v
+Z30 FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_sdram.v
+L0 158
+R5
+r1
+!s85 0
+31
+Z31 !s108 1475961242.605000
+Z32 !s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_sdram.v|
+Z33 !s90 -reportprogress|300|-vlog01compat|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_sdram.v|
+!i113 1
+R6
+R7
+vnios_system_sdram_input_efifo_module
+R27
+!i10b 1
+!s100 AMXI;6^?B8>K[KU;_5hz<0
+Iab97kPmW94M8OD6mWL>k30
+R2
+R0
+R28
+R29
+R30
+R4
+R5
+r1
+!s85 0
+31
+R31
+R32
+R33
+!i113 1
+R6
+R7
+vnios_system_sdram_pll
+R27
+!i10b 1
+!s100 T[FE[obTmG?PzU3TS=2AD1
+ICBni=FDA=iO[N2^B]OaDk1
+R2
+R0
+Z34 w1475949196
+Z35 8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_sdram_pll.v
+Z36 FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_sdram_pll.v
+L0 218
+R5
+r1
+!s85 0
+31
+Z37 !s108 1475961242.372000
+Z38 !s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_sdram_pll.v|
+Z39 !s90 -reportprogress|300|-vlog01compat|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_sdram_pll.v|
+!i113 1
+R6
+R7
+vnios_system_sdram_pll_altpll_lqa2
+R27
+!i10b 1
+!s100 ^STn66kl3A_3`>k^;zA=_0
+IL2[S9KD7akOnfoBPhBCYS1
+R2
+R0
+R34
+R35
+R36
+L0 131
+R5
+r1
+!s85 0
+31
+R37
+R38
+R39
+!i113 1
+R6
+R7
+vnios_system_sdram_pll_dffpipe_l2c
+R27
+!i10b 1
+!s100 elWh6@kIZm@nImFLZLo1<2
+I:1PM[IBWZX;ZbYH:S4cdN0
+R2
+R0
+R34
+R35
+R36
+L0 38
+R5
+r1
+!s85 0
+31
+R37
+R38
+R39
+!i113 1
+R6
+R7
+vnios_system_sdram_pll_stdsync_sv6
+R27
+!i10b 1
+!s100 h?gUGNi8f=H5NC4YTaSd83
+I_j7gJR?Vl_GOF2kNcUnDD2
+R2
+R0
+R34
+R35
+R36
+L0 99
+R5
+r1
+!s85 0
+31
+R37
+R38
+R39
+!i113 1
+R6
+R7
+vnios_system_sysid_qsys_0
+R27
+!i10b 1
+!s100 BIH3KLZ0XK;O74kzX?;B=1
+IISLNaCe79S2?48kfi7dJ`0
+R2
+R0
+R34
+8C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_sysid_qsys_0.v
+FC:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_sysid_qsys_0.v
+R4
+R5
+r1
+!s85 0
+31
+!s108 1475961242.169000
+!s107 C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_sysid_qsys_0.v|
+!s90 -reportprogress|300|-vlog01compat|-work|nios_system|+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules|C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_sysid_qsys_0.v|
+!i113 1
+R6
+R7

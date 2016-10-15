@@ -1,0 +1,276 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Michael/Desktop/logic_processor_4bit/simulation/modelsim
+vcompute
+Z1 DXx6 sv_std 3 std 0 22 <EOTafDcUY:cQeO^ICn]m3
+Z2 !s110 1473665699
+!i10b 1
+!s100 alk1LO5Go2CggS6@DV_8M0
+Ikm]RoR2b@06?1K;S8@jC91
+Z3 V`JN@9S9cnhjKRR_L]QIcM3
+!s105 compute_sv_unit
+S1
+R0
+Z4 w1473617493
+8C:/Users/Michael/Desktop/logic_processor_4bit/compute.sv
+FC:/Users/Michael/Desktop/logic_processor_4bit/compute.sv
+L0 1
+Z5 OV;L;10.3d;59
+r1
+!s85 0
+31
+!s108 1473665699.543000
+!s107 C:/Users/Michael/Desktop/logic_processor_4bit/compute.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/Michael/Desktop/logic_processor_4bit|C:/Users/Michael/Desktop/logic_processor_4bit/compute.sv|
+!i113 1
+Z6 o-sv -work work
+Z7 !s92 -sv -work work +incdir+C:/Users/Michael/Desktop/logic_processor_4bit
+vcontrol
+R1
+R2
+!i10b 1
+!s100 ?]2MCbjQH5<KBQ;82AZVD3
+Iz>TZ:U?;3e3Ka6:64MGcd2
+R3
+!s105 Control_sv_unit
+S1
+R0
+w1473665618
+8C:/Users/Michael/Desktop/logic_processor_4bit/Control.sv
+FC:/Users/Michael/Desktop/logic_processor_4bit/Control.sv
+L0 3
+R5
+r1
+!s85 0
+31
+!s108 1473665699.160000
+!s107 C:/Users/Michael/Desktop/logic_processor_4bit/Control.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/Michael/Desktop/logic_processor_4bit|C:/Users/Michael/Desktop/logic_processor_4bit/Control.sv|
+!i113 1
+R6
+R7
+vHexDriver
+R1
+Z8 !s110 1473665698
+!i10b 1
+!s100 UH7P[dTK1gbKnd]=kl[zQ3
+I4>NenGLgHFI29fQ5bm6Z^3
+R3
+!s105 HexDriver_sv_unit
+S1
+R0
+R4
+8C:/Users/Michael/Desktop/logic_processor_4bit/HexDriver.sv
+FC:/Users/Michael/Desktop/logic_processor_4bit/HexDriver.sv
+L0 1
+R5
+r1
+!s85 0
+31
+!s108 1473665698.825000
+!s107 C:/Users/Michael/Desktop/logic_processor_4bit/HexDriver.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/Michael/Desktop/logic_processor_4bit|C:/Users/Michael/Desktop/logic_processor_4bit/HexDriver.sv|
+!i113 1
+R6
+R7
+n@hex@driver
+vProcessor_8
+R1
+Z9 !s110 1473665700
+!i10b 1
+!s100 90iRZU4K?PGRTgmD?mM333
+Ia65c2I8<1I^_bZoECA[Lk1
+R3
+!s105 Processor_8_sv_unit
+S1
+R0
+w1473665016
+8C:/Users/Michael/Desktop/logic_processor_4bit/Processor_8.sv
+FC:/Users/Michael/Desktop/logic_processor_4bit/Processor_8.sv
+L0 1
+R5
+r1
+!s85 0
+31
+!s108 1473665700.795000
+!s107 C:/Users/Michael/Desktop/logic_processor_4bit/Processor_8.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/Michael/Desktop/logic_processor_4bit|C:/Users/Michael/Desktop/logic_processor_4bit/Processor_8.sv|
+!i113 1
+R6
+R7
+n@processor_8
+vreg_8
+R1
+R9
+!i10b 1
+!s100 WWdzR03@C^9b3oUm=RkLo0
+IG;Jen?IPRoDSNWWo4cN<b2
+R3
+!s105 Reg_8_sv_unit
+S1
+R0
+w1473654618
+8C:/Users/Michael/Desktop/logic_processor_4bit/Reg_8.sv
+FC:/Users/Michael/Desktop/logic_processor_4bit/Reg_8.sv
+L0 1
+R5
+r1
+!s85 0
+31
+!s108 1473665699.996000
+!s107 C:/Users/Michael/Desktop/logic_processor_4bit/Reg_8.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/Michael/Desktop/logic_processor_4bit|C:/Users/Michael/Desktop/logic_processor_4bit/Reg_8.sv|
+!i113 1
+R6
+R7
+vregister_unit
+R1
+R9
+!i10b 1
+!s100 2ffML3jhY4aCKKX2f;m:<1
+I=A9L69L_7_WKcZYXh7X;<1
+R3
+!s105 Register_unit_sv_unit
+S1
+R0
+w1473654765
+8C:/Users/Michael/Desktop/logic_processor_4bit/Register_unit.sv
+FC:/Users/Michael/Desktop/logic_processor_4bit/Register_unit.sv
+L0 1
+R5
+r1
+!s85 0
+31
+!s108 1473665700.406000
+!s107 C:/Users/Michael/Desktop/logic_processor_4bit/Register_unit.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/Michael/Desktop/logic_processor_4bit|C:/Users/Michael/Desktop/logic_processor_4bit/Register_unit.sv|
+!i113 1
+R6
+R7
+vrouter
+R1
+R8
+!i10b 1
+!s100 ]S2VA?P3gi<Om=AC6U3903
+I_1GT6lNNSl9zm4bd2fbRE2
+R3
+!s105 Router_sv_unit
+S1
+R0
+R4
+8C:/Users/Michael/Desktop/logic_processor_4bit/Router.sv
+FC:/Users/Michael/Desktop/logic_processor_4bit/Router.sv
+L0 1
+R5
+r1
+!s85 0
+31
+!s108 1473665698.491000
+!s107 C:/Users/Michael/Desktop/logic_processor_4bit/Router.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/Michael/Desktop/logic_processor_4bit|C:/Users/Michael/Desktop/logic_processor_4bit/Router.sv|
+!i113 1
+R6
+R7
+vsync
+R1
+R8
+!i10b 1
+!s100 FloJaUP>]UNPcBERTmfU13
+IGK17_Z4a^7f9`cg[@aeE;0
+R3
+Z10 !s105 Synchronizers_sv_unit
+S1
+R0
+R4
+Z11 8C:/Users/Michael/Desktop/logic_processor_4bit/Synchronizers.sv
+Z12 FC:/Users/Michael/Desktop/logic_processor_4bit/Synchronizers.sv
+L0 4
+R5
+r1
+!s85 0
+31
+Z13 !s108 1473665698.023000
+Z14 !s107 C:/Users/Michael/Desktop/logic_processor_4bit/Synchronizers.sv|
+Z15 !s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/Michael/Desktop/logic_processor_4bit|C:/Users/Michael/Desktop/logic_processor_4bit/Synchronizers.sv|
+!i113 1
+R6
+R7
+vsync_r0
+R1
+R8
+!i10b 1
+!s100 IY__o=c__0HaV>`i?<<DI3
+IMcRB_MI<hF8a=8FENQoZM1
+R3
+R10
+S1
+R0
+R4
+R11
+R12
+L0 18
+R5
+r1
+!s85 0
+31
+R13
+R14
+R15
+!i113 1
+R6
+R7
+vsync_r1
+R1
+R8
+!i10b 1
+!s100 0oGm<h1i4<H<YLC4G`cn=0
+I<n7Y0WT?XZWj1W5QzGWe32
+R3
+R10
+S1
+R0
+R4
+R11
+R12
+L0 39
+R5
+r1
+!s85 0
+31
+R13
+R14
+R15
+!i113 1
+R6
+R7
+vtestbench_8
+R1
+!s110 1473665701
+!i10b 1
+!s100 SdVRi`gBibQPPB>ckI[F@3
+ImIJ8@0h:FRn;04[f3J=Kk0
+R3
+!s105 testbench_8_sv_unit
+S1
+R0
+w1473663999
+8C:/Users/Michael/Desktop/logic_processor_4bit/testbench_8.sv
+FC:/Users/Michael/Desktop/logic_processor_4bit/testbench_8.sv
+L0 1
+R5
+r1
+!s85 0
+31
+!s108 1473665701.132000
+!s107 C:/Users/Michael/Desktop/logic_processor_4bit/testbench_8.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/Michael/Desktop/logic_processor_4bit|C:/Users/Michael/Desktop/logic_processor_4bit/testbench_8.sv|
+!i113 1
+R6
+R7

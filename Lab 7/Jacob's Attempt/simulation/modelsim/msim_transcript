@@ -1,0 +1,284 @@
+# Reading F:/Altera/15.0/modelsim_ase/tcl/vsim/pref.tcl
+# do lab7_run_msim_rtl_systemverilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim PE vmap 10.3d Lib Mapping Utility 2014.10 Oct  7 2014
+# vmap -modelsim_quiet work rtl_work 
+# Copying F:/Altera/15.0/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied F:/Altera/15.0/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vlib nios_system
+# vmap nios_system nios_system
+# Model Technology ModelSim PE vmap 10.3d Lib Mapping Utility 2014.10 Oct  7 2014
+# vmap -modelsim_quiet nios_system nios_system 
+# Modifying modelsim.ini
+# vlog -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/nios_system.v}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:00 on Oct 08,2016
+# vlog -reportprogress 300 -vlog01compat -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/nios_system.v 
+# -- Compiling module nios_system
+# 
+# Top level modules:
+# 	nios_system
+# End time: 16:14:00 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_reset_controller.v}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:00 on Oct 08,2016
+# vlog -reportprogress 300 -vlog01compat -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_reset_controller.v 
+# -- Compiling module altera_reset_controller
+# 
+# Top level modules:
+# 	altera_reset_controller
+# End time: 16:14:00 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_reset_synchronizer.v}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:01 on Oct 08,2016
+# vlog -reportprogress 300 -vlog01compat -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_reset_synchronizer.v 
+# -- Compiling module altera_reset_synchronizer
+# 
+# Top level modules:
+# 	altera_reset_synchronizer
+# End time: 16:14:01 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0.v}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:01 on Oct 08,2016
+# vlog -reportprogress 300 -vlog01compat -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0.v 
+# -- Compiling module nios_system_mm_interconnect_0
+# 
+# Top level modules:
+# 	nios_system_mm_interconnect_0
+# End time: 16:14:01 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter_005.v}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:01 on Oct 08,2016
+# vlog -reportprogress 300 -vlog01compat -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter_005.v 
+# -- Compiling module nios_system_mm_interconnect_0_avalon_st_adapter_005
+# 
+# Top level modules:
+# 	nios_system_mm_interconnect_0_avalon_st_adapter_005
+# End time: 16:14:01 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter.v}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:01 on Oct 08,2016
+# vlog -reportprogress 300 -vlog01compat -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter.v 
+# -- Compiling module nios_system_mm_interconnect_0_avalon_st_adapter
+# 
+# Top level modules:
+# 	nios_system_mm_interconnect_0_avalon_st_adapter
+# End time: 16:14:01 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_avalon_sc_fifo.v}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:01 on Oct 08,2016
+# vlog -reportprogress 300 -vlog01compat -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_avalon_sc_fifo.v 
+# -- Compiling module altera_avalon_sc_fifo
+# 
+# Top level modules:
+# 	altera_avalon_sc_fifo
+# End time: 16:14:01 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_sysid_qsys_0.v}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:02 on Oct 08,2016
+# vlog -reportprogress 300 -vlog01compat -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_sysid_qsys_0.v 
+# -- Compiling module nios_system_sysid_qsys_0
+# 
+# Top level modules:
+# 	nios_system_sysid_qsys_0
+# End time: 16:14:02 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_sdram_pll.v}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:02 on Oct 08,2016
+# vlog -reportprogress 300 -vlog01compat -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_sdram_pll.v 
+# -- Compiling module nios_system_sdram_pll_dffpipe_l2c
+# -- Compiling module nios_system_sdram_pll_stdsync_sv6
+# -- Compiling module nios_system_sdram_pll_altpll_lqa2
+# -- Compiling module nios_system_sdram_pll
+# 
+# Top level modules:
+# 	nios_system_sdram_pll
+# End time: 16:14:02 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_sdram.v}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:02 on Oct 08,2016
+# vlog -reportprogress 300 -vlog01compat -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_sdram.v 
+# -- Compiling module nios_system_sdram_input_efifo_module
+# -- Compiling module nios_system_sdram
+# 
+# Top level modules:
+# 	nios_system_sdram
+# End time: 16:14:02 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_onchip_memory2_0.v}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:02 on Oct 08,2016
+# vlog -reportprogress 300 -vlog01compat -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_onchip_memory2_0.v 
+# -- Compiling module nios_system_onchip_memory2_0
+# 
+# Top level modules:
+# 	nios_system_onchip_memory2_0
+# End time: 16:14:02 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0.v}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:03 on Oct 08,2016
+# vlog -reportprogress 300 -vlog01compat -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0.v 
+# -- Compiling module nios_system_nios2_gen2_0
+# 
+# Top level modules:
+# 	nios_system_nios2_gen2_0
+# End time: 16:14:03 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu.v}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:03 on Oct 08,2016
+# vlog -reportprogress 300 -vlog01compat -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu.v 
+# -- Compiling module nios_system_nios2_gen2_0_cpu_register_bank_a_module
+# -- Compiling module nios_system_nios2_gen2_0_cpu_register_bank_b_module
+# -- Compiling module nios_system_nios2_gen2_0_cpu_nios2_oci_debug
+# -- Compiling module nios_system_nios2_gen2_0_cpu_nios2_oci_break
+# -- Compiling module nios_system_nios2_gen2_0_cpu_nios2_oci_xbrk
+# -- Compiling module nios_system_nios2_gen2_0_cpu_nios2_oci_dbrk
+# -- Compiling module nios_system_nios2_gen2_0_cpu_nios2_oci_itrace
+# -- Compiling module nios_system_nios2_gen2_0_cpu_nios2_oci_td_mode
+# -- Compiling module nios_system_nios2_gen2_0_cpu_nios2_oci_dtrace
+# -- Compiling module nios_system_nios2_gen2_0_cpu_nios2_oci_compute_input_tm_cnt
+# -- Compiling module nios_system_nios2_gen2_0_cpu_nios2_oci_fifo_wrptr_inc
+# -- Compiling module nios_system_nios2_gen2_0_cpu_nios2_oci_fifo_cnt_inc
+# -- Compiling module nios_system_nios2_gen2_0_cpu_nios2_oci_fifo
+# -- Compiling module nios_system_nios2_gen2_0_cpu_nios2_oci_pib
+# -- Compiling module nios_system_nios2_gen2_0_cpu_nios2_oci_im
+# -- Compiling module nios_system_nios2_gen2_0_cpu_nios2_performance_monitors
+# -- Compiling module nios_system_nios2_gen2_0_cpu_nios2_avalon_reg
+# -- Compiling module nios_system_nios2_gen2_0_cpu_ociram_sp_ram_module
+# -- Compiling module nios_system_nios2_gen2_0_cpu_nios2_ocimem
+# -- Compiling module nios_system_nios2_gen2_0_cpu_nios2_oci
+# -- Compiling module nios_system_nios2_gen2_0_cpu
+# 
+# Top level modules:
+# 	nios_system_nios2_gen2_0_cpu_nios2_performance_monitors
+# 	nios_system_nios2_gen2_0_cpu
+# End time: 16:14:03 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_debug_slave_sysclk.v}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:04 on Oct 08,2016
+# vlog -reportprogress 300 -vlog01compat -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_debug_slave_sysclk.v 
+# -- Compiling module nios_system_nios2_gen2_0_cpu_debug_slave_sysclk
+# 
+# Top level modules:
+# 	nios_system_nios2_gen2_0_cpu_debug_slave_sysclk
+# End time: 16:14:04 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_debug_slave_tck.v}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:04 on Oct 08,2016
+# vlog -reportprogress 300 -vlog01compat -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_debug_slave_tck.v 
+# -- Compiling module nios_system_nios2_gen2_0_cpu_debug_slave_tck
+# 
+# Top level modules:
+# 	nios_system_nios2_gen2_0_cpu_debug_slave_tck
+# End time: 16:14:04 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_debug_slave_wrapper.v}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:04 on Oct 08,2016
+# vlog -reportprogress 300 -vlog01compat -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_debug_slave_wrapper.v 
+# -- Compiling module nios_system_nios2_gen2_0_cpu_debug_slave_wrapper
+# 
+# Top level modules:
+# 	nios_system_nios2_gen2_0_cpu_debug_slave_wrapper
+# End time: 16:14:05 on Oct 08,2016, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_test_bench.v}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:05 on Oct 08,2016
+# vlog -reportprogress 300 -vlog01compat -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_nios2_gen2_0_cpu_test_bench.v 
+# -- Compiling module nios_system_nios2_gen2_0_cpu_test_bench
+# 
+# Top level modules:
+# 	nios_system_nios2_gen2_0_cpu_test_bench
+# End time: 16:14:05 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_led.v}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:05 on Oct 08,2016
+# vlog -reportprogress 300 -vlog01compat -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_led.v 
+# -- Compiling module nios_system_led
+# 
+# Top level modules:
+# 	nios_system_led
+# End time: 16:14:05 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_irq_mapper.sv}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:05 on Oct 08,2016
+# vlog -reportprogress 300 -sv -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_irq_mapper.sv 
+# -- Compiling module nios_system_irq_mapper
+# 
+# Top level modules:
+# 	nios_system_irq_mapper
+# End time: 16:14:06 on Oct 08,2016, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -sv -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter_005_error_adapter_0.sv}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:06 on Oct 08,2016
+# vlog -reportprogress 300 -sv -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter_005_error_adapter_0.sv 
+# -- Compiling module nios_system_mm_interconnect_0_avalon_st_adapter_005_error_adapter_0
+# 
+# Top level modules:
+# 	nios_system_mm_interconnect_0_avalon_st_adapter_005_error_adapter_0
+# End time: 16:14:06 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:06 on Oct 08,2016
+# vlog -reportprogress 300 -sv -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/nios_system_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv 
+# -- Compiling module nios_system_mm_interconnect_0_avalon_st_adapter_error_adapter_0
+# 
+# Top level modules:
+# 	nios_system_mm_interconnect_0_avalon_st_adapter_error_adapter_0
+# End time: 16:14:06 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_avalon_st_handshake_clock_crosser.v}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:07 on Oct 08,2016
+# vlog -reportprogress 300 -vlog01compat -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_avalon_st_handshake_clock_crosser.v 
+# -- Compiling module altera_avalon_st_handshake_clock_crosser
+# 
+# Top level modules:
+# 	altera_avalon_st_handshake_clock_crosser
+# End time: 16:14:07 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_avalon_st_clock_crosser.v}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:07 on Oct 08,2016
+# vlog -reportprogress 300 -vlog01compat -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_avalon_st_clock_crosser.v 
+# -- Compiling module altera_avalon_st_clock_crosser
+# 
+# Top level modules:
+# 	altera_avalon_st_clock_crosser
+# End time: 16:14:07 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work nios_system +incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules {C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_merlin_width_adapter.sv}
+# Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+# Start time: 16:14:08 on Oct 08,2016
+# vlog -reportprogress 300 -sv -work nios_system "+incdir+C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules" C:/Users/Michael/Desktop/Lab7/nios_system/synthesis/submodules/altera_merlin_width_adapter.sv 
+# -- Compiling module altera_merlin_width_adapter
+# 
+# Top level modules:
+# 	altera_merlin_width_adapter
+# End time: 16:14:08 on Oct 08,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
