@@ -1,6 +1,0 @@
-13:44:08 **** Clean-only build of configuration Nios II for project usb_kb ****
-make clean 
-[usb_kb clean complete]
-
-13:44:11 Build Finished (took 2s.170ms)
-
