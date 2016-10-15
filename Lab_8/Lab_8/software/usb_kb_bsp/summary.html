@@ -7,28 +7,28 @@
 <td width="20%" bgcolor="#77BBFF">BSP Type:</td><td>hal</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">SOPC Design File:</td><td>..\..\nios_system.sopcinfo</td>
+<td width="20%" bgcolor="#77BBFF">SOPC Design File:</td><td>..\..\lab8_soc.sopcinfo</td>
 </tr>
 <tr mode="wrap">
 <td width="20%" bgcolor="#77BBFF">Quartus JDI File:</td><td>default</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">CPU:</td><td>nios2_qsys_0</td>
+<td width="20%" bgcolor="#77BBFF">CPU:</td><td>nios2_gen2_0</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Settings File:</td><td>settings.bsp</td>
+<td width="20%" bgcolor="#77BBFF">BSP Settings File:</td><td>.\settings.bsp</td>
 </tr>
 <tr mode="wrap">
 <td width="20%" bgcolor="#77BBFF">BSP Version:</td><td>default</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated On:</td><td>Jul 6, 2015 3:42:44 PM</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated On:</td><td>Oct 15, 2016 2:50:25 PM</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated Timestamp:</td><td>1436215364910</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated Timestamp:</td><td>1476561025475</td>
 </tr>
 <tr mode="wrap">
-<td width="20%" bgcolor="#77BBFF">BSP Generated Location:</td><td>C:\ece385\lab8_su2015\lab8_su2015\software\usb_kyb_bsp</td>
+<td width="20%" bgcolor="#77BBFF">BSP Generated Location:</td><td>C:\GitHub\ProfBrown_ECE385\Lab_8\Lab_8\software\usb_kb_bsp</td>
 </tr>
 </table>
 <br>
@@ -38,37 +38,43 @@
 <th align="left" width="20%">Slave Descriptor</th><th align="left" width="40%">Address Range</th><th align="left" width="20%">Size</th><th align="left" width="20%">Attributes</th>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
-<td>sdram</td><td>0x04000000 - 0x05FFFFFF</td><td>33554432</td><td class="listing">memory</td>
+<td>sdram</td><td>0x10000000 - 0x17FFFFFF</td><td>134217728</td><td class="listing">memory</td>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
-<td>jtag_uart_0</td><td>0x00002090 - 0x00002097</td><td>8</td><td class="listing">printable</td>
+<td>sysid_qsys_0</td><td>0x000000C0 - 0x000000C7</td><td>8</td><td class="listing">&nbsp;</td>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
-<td>sysid_qsys_0</td><td>0x00002088 - 0x0000208F</td><td>8</td><td class="listing">&nbsp;</td>
+<td>jtag_uart_0</td><td>0x000000B8 - 0x000000BF</td><td>8</td><td class="listing">printable</td>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
-<td>otg_hpi_address</td><td>0x00002070 - 0x0000207F</td><td>16</td><td class="listing">&nbsp;</td>
+<td>sdram_pll</td><td>0x000000A0 - 0x000000AF</td><td>16</td><td class="listing">&nbsp;</td>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
-<td>altpll_0</td><td>0x00002060 - 0x0000206F</td><td>16</td><td class="listing">&nbsp;</td>
+<td>accumulate</td><td>0x00000090 - 0x0000009F</td><td>16</td><td class="listing">&nbsp;</td>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
-<td>otg_hpi_data</td><td>0x00002050 - 0x0000205F</td><td>16</td><td class="listing">&nbsp;</td>
+<td>reset</td><td>0x00000080 - 0x0000008F</td><td>16</td><td class="listing">&nbsp;</td>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
-<td>otg_hpi_r</td><td>0x00002040 - 0x0000204F</td><td>16</td><td class="listing">&nbsp;</td>
+<td>Keycode</td><td>0x00000070 - 0x0000007F</td><td>16</td><td class="listing">&nbsp;</td>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
-<td>otg_hpi_w</td><td>0x00002030 - 0x0000203F</td><td>16</td><td class="listing">&nbsp;</td>
+<td>otg_hpi_cs</td><td>0x00000060 - 0x0000006F</td><td>16</td><td class="listing">&nbsp;</td>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
-<td>keycode</td><td>0x00002020 - 0x0000202F</td><td>16</td><td class="listing">&nbsp;</td>
+<td>otg_hpi_address</td><td>0x00000050 - 0x0000005F</td><td>16</td><td class="listing">&nbsp;</td>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
-<td>otg_hpi_cs</td><td>0x00002010 - 0x0000201F</td><td>16</td><td class="listing">&nbsp;</td>
+<td>otg_hpi_data</td><td>0x00000040 - 0x0000004F</td><td>16</td><td class="listing">&nbsp;</td>
 </tr>
 <tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
-<td>onchip_memory2_0</td><td>0x00000000 - 0x00000FFF</td><td>4096</td><td class="listing">memory</td>
+<td>otg_hpi_r</td><td>0x00000030 - 0x0000003F</td><td>16</td><td class="listing">&nbsp;</td>
+</tr>
+<tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
+<td>otg_hpi_w</td><td>0x00000020 - 0x0000002F</td><td>16</td><td class="listing">&nbsp;</td>
+</tr>
+<tr mode="wrap" STYLE="display: 'block'; font-family: 'courier'; color: '#000000'; font-weight: '500'; font-size: '14'; margin-top: '10pt'; text-align: 'left'">
+<td>onchip_memory2_0</td><td>0x00000000 - 0x0000000F</td><td>16</td><td class="listing">memory</td>
 </tr>
 </table>
 <br>
@@ -306,7 +312,7 @@
 <td width="20%">Default Value:</td><td>false</td>
 </tr>
 <tr>
-<td width="20%">Value:</td><td>false</td>
+<td width="20%">Value:</td><td>true</td>
 </tr>
 <tr>
 <td width="20%">Type:</td><td>BooleanDefineOnly</td>
@@ -462,7 +468,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.enable_small_c_library</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -489,7 +495,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.enable_sopc_sysid_check</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>1</td>
@@ -543,7 +549,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.linker.enable_alt_load</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -570,7 +576,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.linker.enable_alt_load_copy_exceptions</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -597,7 +603,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.linker.enable_alt_load_copy_rodata</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -624,7 +630,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.linker.enable_alt_load_copy_rwdata</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -651,7 +657,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.linker.enable_exception_stack</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -678,7 +684,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.linker.enable_interrupt_stack</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -705,7 +711,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.linker.exception_stack_memory_region_name</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>none</td>
@@ -732,7 +738,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.linker.exception_stack_size</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>1024</td>
@@ -759,7 +765,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.linker.interrupt_stack_memory_region_name</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>none</td>
@@ -786,7 +792,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.linker.interrupt_stack_size</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>1024</td>
@@ -840,7 +846,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.log_port</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>none</td>
@@ -1515,7 +1521,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.make.ignore_system_derived.big_endian</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -1539,10 +1545,64 @@
 <br>
 <table border="1" bgcolor="#FFFFCC" width="60%">
 <tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">hal.make.ignore_system_derived.bmx_present</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>none</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>0</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>0</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>Boolean</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>public_mk_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>If true, prevents GCC from using BMX instructions. If false, GCC uses BMX instructions if present in the CPU.</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
+<td align="left" width="15%">Setting Name:</td><td align="left">hal.make.ignore_system_derived.cdx_present</td>
+</tr>
+<tr>
+<td width="20%">Identifier:</td><td>none</td>
+</tr>
+<tr>
+<td width="20%">Default Value:</td><td>0</td>
+</tr>
+<tr>
+<td width="20%">Value:</td><td>0</td>
+</tr>
+<tr>
+<td width="20%">Type:</td><td>Boolean</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Destination:</td><td>public_mk_define</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Description:</td><td>If true, prevents GCC from using CDX instructions. If false, GCC uses CDX instructions if present in the CPU.</td>
+</tr>
+<tr mode="wrap">
+<td width="20%">Restrictions:</td><td>none</td>
+</tr>
+</table>
+<br>
+<table border="1" bgcolor="#FFFFCC" width="60%">
+<tr bgcolor="#77BBFF">
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.make.ignore_system_derived.debug_core_present</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -1569,7 +1629,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.make.ignore_system_derived.fpu_present</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -1596,7 +1656,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.make.ignore_system_derived.hardware_divide_present</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -1623,7 +1683,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.make.ignore_system_derived.hardware_fp_cust_inst_divider_present</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -1650,7 +1710,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.make.ignore_system_derived.hardware_fp_cust_inst_no_divider_present</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -1677,7 +1737,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.make.ignore_system_derived.hardware_multiplier_present</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -1704,7 +1764,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.make.ignore_system_derived.hardware_mulx_present</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -1731,7 +1791,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.make.ignore_system_derived.sopc_simulation_enabled</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -1758,7 +1818,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.make.ignore_system_derived.sopc_system_base_address</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -1785,7 +1845,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.make.ignore_system_derived.sopc_system_id</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -1812,7 +1872,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.make.ignore_system_derived.sopc_system_timestamp</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>0</td>
@@ -1893,7 +1953,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.stderr</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>none</td>
@@ -1920,7 +1980,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.stdin</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>none</td>
@@ -1947,7 +2007,7 @@
 <td align="left" width="15%">Setting Name:</td><td align="left">hal.stdout</td>
 </tr>
 <tr>
-<td width="20%">Identifier:</td><td>NONE</td>
+<td width="20%">Identifier:</td><td>none</td>
 </tr>
 <tr>
 <td width="20%">Default Value:</td><td>none</td>

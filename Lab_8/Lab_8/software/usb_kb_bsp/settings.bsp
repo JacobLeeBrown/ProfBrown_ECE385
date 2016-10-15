@@ -2,13 +2,13 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Jul 6, 2015 3:42:44 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1436215364910</BspGeneratedUnixTimeStamp>
-        <BspGeneratedLocation>C:\ece385\lab8_su2015\lab8_su2015\software\usb_kyb_bsp</BspGeneratedLocation>
-        <BspSettingsFile>settings.bsp</BspSettingsFile>
-        <SopcDesignFile>..\..\nios_system.sopcinfo</SopcDesignFile>
+        <BspGeneratedTimeStamp>Oct 15, 2016 2:50:25 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1476561025475</BspGeneratedUnixTimeStamp>
+        <BspGeneratedLocation>C:\GitHub\ProfBrown_ECE385\Lab_8\Lab_8\software\usb_kb_bsp</BspGeneratedLocation>
+        <BspSettingsFile>.\settings.bsp</BspSettingsFile>
+        <SopcDesignFile>..\..\lab8_soc.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
-        <Cpu>nios2_qsys_0</Cpu>
+        <Cpu>nios2_gen2_0</Cpu>
         <SchemaVersion>1.9</SchemaVersion>
         <Setting>
                 <SettingName>hal.sys_clk_timer</SettingName>
@@ -50,7 +50,7 @@
                 <SettingName>hal.enable_instruction_related_exceptions_api</SettingName>
                 <Identifier>ALT_INCLUDE_INSTRUCTION_RELATED_EXCEPTION_API</Identifier>
                 <Type>BooleanDefineOnly</Type>
-                <Value>false</Value>
+                <Value>true</Value>
                 <DefaultValue>false</DefaultValue>
                 <DestinationFile>system_h_define</DestinationFile>
                 <Description>Enables API for registering handlers to service instruction-related exceptions. Enabling this setting increases the size of the exception entry code.</Description>
@@ -72,7 +72,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.linker.enable_alt_load</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>Boolean</Type>
                 <Value>1</Value>
                 <DefaultValue>0</DefaultValue>
@@ -84,7 +84,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.linker.enable_alt_load_copy_rodata</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>Boolean</Type>
                 <Value>0</Value>
                 <DefaultValue>0</DefaultValue>
@@ -96,7 +96,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.linker.enable_alt_load_copy_rwdata</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>Boolean</Type>
                 <Value>1</Value>
                 <DefaultValue>0</DefaultValue>
@@ -108,7 +108,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.linker.enable_alt_load_copy_exceptions</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>Boolean</Type>
                 <Value>0</Value>
                 <DefaultValue>0</DefaultValue>
@@ -120,7 +120,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.linker.enable_exception_stack</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>Boolean</Type>
                 <Value>0</Value>
                 <DefaultValue>0</DefaultValue>
@@ -132,7 +132,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.linker.exception_stack_size</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>DecimalNumber</Type>
                 <Value>1024</Value>
                 <DefaultValue>1024</DefaultValue>
@@ -144,7 +144,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.linker.exception_stack_memory_region_name</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>UnquotedString</Type>
                 <Value>sdram</Value>
                 <DefaultValue>none</DefaultValue>
@@ -156,7 +156,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.linker.enable_interrupt_stack</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>Boolean</Type>
                 <Value>0</Value>
                 <DefaultValue>0</DefaultValue>
@@ -168,7 +168,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.linker.interrupt_stack_size</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>DecimalNumber</Type>
                 <Value>1024</Value>
                 <DefaultValue>1024</DefaultValue>
@@ -180,7 +180,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.linker.interrupt_stack_memory_region_name</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>UnquotedString</Type>
                 <Value>sdram</Value>
                 <DefaultValue>none</DefaultValue>
@@ -192,7 +192,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.stdin</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>UnquotedString</Type>
                 <Value>jtag_uart_0</Value>
                 <DefaultValue>none</DefaultValue>
@@ -204,7 +204,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.stdout</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>UnquotedString</Type>
                 <Value>jtag_uart_0</Value>
                 <DefaultValue>none</DefaultValue>
@@ -216,7 +216,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.stderr</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>UnquotedString</Type>
                 <Value>jtag_uart_0</Value>
                 <DefaultValue>none</DefaultValue>
@@ -228,7 +228,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.log_port</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>UnquotedString</Type>
                 <Value>none</Value>
                 <DefaultValue>none</DefaultValue>
@@ -540,7 +540,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.make.ignore_system_derived.sopc_system_id</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>Boolean</Type>
                 <Value>0</Value>
                 <DefaultValue>0</DefaultValue>
@@ -552,7 +552,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.make.ignore_system_derived.sopc_system_timestamp</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>Boolean</Type>
                 <Value>0</Value>
                 <DefaultValue>0</DefaultValue>
@@ -564,7 +564,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.make.ignore_system_derived.sopc_system_base_address</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>Boolean</Type>
                 <Value>0</Value>
                 <DefaultValue>0</DefaultValue>
@@ -576,7 +576,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.make.ignore_system_derived.sopc_simulation_enabled</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>Boolean</Type>
                 <Value>0</Value>
                 <DefaultValue>0</DefaultValue>
@@ -588,7 +588,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.make.ignore_system_derived.fpu_present</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>Boolean</Type>
                 <Value>0</Value>
                 <DefaultValue>0</DefaultValue>
@@ -599,8 +599,32 @@
                 <Group>none</Group>
         </Setting>
         <Setting>
+                <SettingName>hal.make.ignore_system_derived.cdx_present</SettingName>
+                <Identifier>none</Identifier>
+                <Type>Boolean</Type>
+                <Value>0</Value>
+                <DefaultValue>0</DefaultValue>
+                <DestinationFile>public_mk_define</DestinationFile>
+                <Description>If true, prevents GCC from using CDX instructions. If false, GCC uses CDX instructions if present in the CPU.</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group>none</Group>
+        </Setting>
+        <Setting>
+                <SettingName>hal.make.ignore_system_derived.bmx_present</SettingName>
+                <Identifier>none</Identifier>
+                <Type>Boolean</Type>
+                <Value>0</Value>
+                <DefaultValue>0</DefaultValue>
+                <DestinationFile>public_mk_define</DestinationFile>
+                <Description>If true, prevents GCC from using BMX instructions. If false, GCC uses BMX instructions if present in the CPU.</Description>
+                <Restrictions>none</Restrictions>
+                <Enabled>false</Enabled>
+                <Group>none</Group>
+        </Setting>
+        <Setting>
                 <SettingName>hal.make.ignore_system_derived.hardware_multiplier_present</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>Boolean</Type>
                 <Value>0</Value>
                 <DefaultValue>0</DefaultValue>
@@ -612,7 +636,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.make.ignore_system_derived.hardware_mulx_present</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>Boolean</Type>
                 <Value>0</Value>
                 <DefaultValue>0</DefaultValue>
@@ -624,7 +648,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.make.ignore_system_derived.hardware_divide_present</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>Boolean</Type>
                 <Value>0</Value>
                 <DefaultValue>0</DefaultValue>
@@ -636,7 +660,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.make.ignore_system_derived.debug_core_present</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>Boolean</Type>
                 <Value>0</Value>
                 <DefaultValue>0</DefaultValue>
@@ -648,7 +672,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.make.ignore_system_derived.big_endian</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>Boolean</Type>
                 <Value>0</Value>
                 <DefaultValue>0</DefaultValue>
@@ -660,7 +684,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.make.ignore_system_derived.hardware_fp_cust_inst_divider_present</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>Boolean</Type>
                 <Value>0</Value>
                 <DefaultValue>0</DefaultValue>
@@ -672,7 +696,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.make.ignore_system_derived.hardware_fp_cust_inst_no_divider_present</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>Boolean</Type>
                 <Value>0</Value>
                 <DefaultValue>0</DefaultValue>
@@ -696,7 +720,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.enable_small_c_library</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>Boolean</Type>
                 <Value>0</Value>
                 <DefaultValue>0</DefaultValue>
@@ -804,7 +828,7 @@
         </Setting>
         <Setting>
                 <SettingName>hal.enable_sopc_sysid_check</SettingName>
-                <Identifier>NONE</Identifier>
+                <Identifier>none</Identifier>
                 <Type>Boolean</Type>
                 <Value>1</Value>
                 <DefaultValue>1</DefaultValue>
@@ -864,68 +888,80 @@
         </Setting>
         <MemoryMap>
                 <slaveDescriptor>onchip_memory2_0</slaveDescriptor>
-                <addressRange>0x00000000 - 0x00000FFF</addressRange>
-                <addressSpan>4096</addressSpan>
+                <addressRange>0x00000000 - 0x0000000F</addressRange>
+                <addressSpan>16</addressSpan>
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>otg_hpi_cs</slaveDescriptor>
-                <addressRange>0x00002010 - 0x0000201F</addressRange>
-                <addressSpan>16</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
-                <slaveDescriptor>keycode</slaveDescriptor>
-                <addressRange>0x00002020 - 0x0000202F</addressRange>
-                <addressSpan>16</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
                 <slaveDescriptor>otg_hpi_w</slaveDescriptor>
-                <addressRange>0x00002030 - 0x0000203F</addressRange>
+                <addressRange>0x00000020 - 0x0000002F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>otg_hpi_r</slaveDescriptor>
-                <addressRange>0x00002040 - 0x0000204F</addressRange>
+                <addressRange>0x00000030 - 0x0000003F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>otg_hpi_data</slaveDescriptor>
-                <addressRange>0x00002050 - 0x0000205F</addressRange>
-                <addressSpan>16</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
-                <slaveDescriptor>altpll_0</slaveDescriptor>
-                <addressRange>0x00002060 - 0x0000206F</addressRange>
+                <addressRange>0x00000040 - 0x0000004F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>otg_hpi_address</slaveDescriptor>
-                <addressRange>0x00002070 - 0x0000207F</addressRange>
+                <addressRange>0x00000050 - 0x0000005F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>sysid_qsys_0</slaveDescriptor>
-                <addressRange>0x00002088 - 0x0000208F</addressRange>
-                <addressSpan>8</addressSpan>
+                <slaveDescriptor>otg_hpi_cs</slaveDescriptor>
+                <addressRange>0x00000060 - 0x0000006F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>Keycode</slaveDescriptor>
+                <addressRange>0x00000070 - 0x0000007F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>reset</slaveDescriptor>
+                <addressRange>0x00000080 - 0x0000008F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>accumulate</slaveDescriptor>
+                <addressRange>0x00000090 - 0x0000009F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>sdram_pll</slaveDescriptor>
+                <addressRange>0x000000A0 - 0x000000AF</addressRange>
+                <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>jtag_uart_0</slaveDescriptor>
-                <addressRange>0x00002090 - 0x00002097</addressRange>
+                <addressRange>0x000000B8 - 0x000000BF</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>
         <MemoryMap>
+                <slaveDescriptor>sysid_qsys_0</slaveDescriptor>
+                <addressRange>0x000000C0 - 0x000000C7</addressRange>
+                <addressSpan>8</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>sdram</slaveDescriptor>
-                <addressRange>0x04000000 - 0x05FFFFFF</addressRange>
-                <addressSpan>33554432</addressSpan>
+                <addressRange>0x10000000 - 0x17FFFFFF</addressRange>
+                <addressSpan>134217728</addressSpan>
                 <attributes>memory</attributes>
         </MemoryMap>
         <LinkerSection>

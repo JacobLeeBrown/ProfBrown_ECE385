@@ -1,9 +1,9 @@
 # memory.gdb - GDB memory region definitions
 #
-# Machine generated for CPU 'nios2_qsys_0' in SOPC Builder design 'nios_system'
-# SOPC Builder design path: ../../nios_system.sopcinfo
+# Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'lab8_soc'
+# SOPC Builder design path: ../../lab8_soc.sopcinfo
 #
-# Generated: Tue Jun 23 13:05:36 CDT 2015
+# Generated: Sat Oct 15 14:50:27 CDT 2016
 
 # DO NOT MODIFY THIS FILE
 #
@@ -47,7 +47,7 @@
 # by allowing GDB to cache memory contents on the host.
 
 # onchip_memory2_0
-memory 0x0 0x1000 cache
+memory 0x0 0x10 cache
 
 # sdram
-memory 0x4000000 0x6000000 cache
+memory 0x10000000 0x18000000 cache

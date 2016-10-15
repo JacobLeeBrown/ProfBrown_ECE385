@@ -129,12 +129,12 @@ BUILD_CONFIGS := default
 
 # This following VERSION comment indicates the version of the tool used to 
 # generate this makefile. A makefile variable is provided for VERSION as well. 
-# ACDS_VERSION: 14.0
-ACDS_VERSION := 14.0
+# ACDS_VERSION: 15.0
+ACDS_VERSION := 15.0
 
 # This following BUILD_NUMBER comment indicates the build number of the tool 
 # used to generate this makefile. 
-# BUILD_NUMBER: 200
+# BUILD_NUMBER: 145
 
 # Define path to the application ELF. 
 # It may be used by the makefile fragments so is defined before including them. 
@@ -317,13 +317,14 @@ else
 endif
 
 # Put each BSP dependent library in a group to avoid circular dependencies.
-APP_BSP_DEP_LIBS := $(foreach l,$(ALT_BSP_DEP_LIBRARY_NAMES),-Wl,--start-group -l$(ALT_C_LIBRARY) -lgcc -l$(l) -Wl,--end-group)
+APP_BSP_DEP_LIBS := $(foreach l,$(ALT_BSP_DEP_LIBRARY_NAMES),-Wl,--start-group -l$(ALT_C_LIBRARY) -lgcc -lm -l$(l) -Wl,--end-group)
 
 else # !AVOID_NIOS2_GCC3_OPTIONS
 
 #
 # Use Nios II GCC 3.X options.
 #
+ALT_BSP_DEP_LIBRARY_NAMES += $(ALT_BSP_DEP_LIBRARY_NAMES) m
 APP_BSP_DEP_LIBS := $(addprefix -msys-lib=, $(ALT_BSP_DEP_LIBRARY_NAMES))
 
 endif # !AVOID_NIOS2_GCC3_OPTIONS
@@ -430,7 +431,7 @@ endif
 # multiple .sopcinfo files in a Quartus project. 
 ifeq ($(JDI_FILE),)
 ifneq ($(QUARTUS_PROJECT_DIR),)
-JDI_FILE := $(wildcard $(QUARTUS_PROJECT_DIR)/*.jdi)
+JDI_FILE := $(firstword $(wildcard $(QUARTUS_PROJECT_DIR)/output_files/*.jdi) $(wildcard $(QUARTUS_PROJECT_DIR)/*.jdi))
 endif
 endif
 
@@ -1022,7 +1023,9 @@ endif # VSIM not set
 ifeq ($(SPD),)
 ifneq ($(ABS_QUARTUS_PROJECT_DIR),)
 ifneq ($(SOPC_NAME),)
-SPD := $(ABS_QUARTUS_PROJECT_DIR)/$(SOPC_NAME)_tb.spd
+SPD_LOCATION = $(ABS_QUARTUS_PROJECT_DIR)/$(SOPC_NAME)_tb/$(SOPC_NAME)_tb/$(SOPC_NAME)_tb.spd
+LEGACY_SPD_LOCATION = $(ABS_QUARTUS_PROJECT_DIR)/$(SOPC_NAME)_tb.spd
+SPD = $(if $(wildcard $(SPD_LOCATION)),$(SPD_LOCATION),$(LEGACY_SPD_LOCATION))
 endif # SOPC_NAME set
 endif # ABS_QUARTUS_PROJECT_DIR set
 endif # SPD == empty string
