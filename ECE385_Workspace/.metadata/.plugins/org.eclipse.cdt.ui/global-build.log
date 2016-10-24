@@ -1,18 +1,33 @@
-16:05:58 **** Clean-only build of configuration Nios II for project lab7_app_bsp ****
-make clean 
-[BSP clean complete]
-16:06:04 **** Clean-only build of configuration Nios II for project lab7_app ****
-make clean 
-[lab7_app clean complete]
-13:44:08 **** Clean-only build of configuration Nios II for project usb_kb ****
-make clean 
-[usb_kb clean complete]
-13:47:04 **** Clean-only build of configuration Nios II for project usb_kb_bsp ****
-make clean 
-[BSP clean complete]
-14:07:21 **** Clean-only build of configuration Nios II for project usb_kb ****
-make clean 
-[usb_kb clean complete]
-14:08:54 **** Clean-only build of configuration Nios II for project usb_kb_bsp ****
-make clean 
-[BSP clean complete]
+17:08:08 **** Build of configuration Nios II for project lab7_app ****
+make all 
+Info: Building ../lab7_app_bsp/
+E:/Downloads/Programs/CS_Programs/Altera/15.0/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../lab7_app_bsp/
+Makefile not up to date.
+../../nios_system.sopcinfo has been modified since the BSP was generated.
+
+Generate the BSP to update the Makefile, and then build again.
+
+To generate from Eclipse:
+ 1. Right-click the BSP project.
+ 2. In the Nios II Menu, click Generate BSP.
+
+To generate from the command line:
+ nios2-bsp-generate-files --settings=<settings file> --bsp-dir=<target bsp files directory>
+
+make[1]: *** [public.mk] Error 1
+make: *** [../lab7_app_bsp/-recurs-make-lib] Error 2
+17:08:11 **** Build of configuration Nios II for project lab7_app_bsp ****
+make all 
+Makefile not up to date.
+../../nios_system.sopcinfo has been modified since the BSP was generated.
+
+Generate the BSP to update the Makefile, and then build again.
+
+To generate from Eclipse:
+ 1. Right-click the BSP project.
+ 2. In the Nios II Menu, click Generate BSP.
+
+To generate from the command line:
+ nios2-bsp-generate-files --settings=<settings file> --bsp-dir=<target bsp files directory>
+
+make: *** [public.mk] Error 1
