@@ -68,7 +68,7 @@ WORD make_word(BYTE b1, BYTE b2, BYTE b3, BYTE b4)
  * – RoundKeys can be generated either altogether at the beginning of the AES algorithm,
  *   or during each round
  */
-void AddRoundKey(BYTE state[4*N_COLS + 1], WORD * round_key_start)
+void AddRoundKey(BYTE *state, WORD * round_key_start)
 {
 	int i;
 	// for all 16 bytes in State and the current round_key
@@ -115,7 +115,7 @@ void SubWord(WORD *w)
  * SubBytes
  * Substitutes bytes of the current state based on the Rijndael S-box
  */
-void SubBytes(BYTE state[4*N_COLS + 1])
+void SubBytes(BYTE *state)
 {
 
 }
@@ -134,14 +134,44 @@ void RotWord(WORD *w)
 								//moved to the last byte
 }
 
-void MixColumns(BYTE state[(4*N_COLS) + 1])
+void MixColumns(BYTE *state)
 {
 
 }
 
-void ShiftRows(BYTE state[(4*N_COLS) + 1])
+void ShiftRow_1Byte(BYTE *x0, BYTE *x1, BYTE *x2, BYTE *x3)
 {
+	BYTE x0_temp = *x0;
+	*x0 = *x1;
+	*x1 = *x2;
+	*x2 = *x3;
+	*x3 = x0_temp;
+}
 
+void ShiftRow_2Byte(BYTE *x0, BYTE *x1, BYTE *x2, BYTE *x3)
+{
+	BYTE x0_temp = *x0;
+	BYTE x1_temp = *x1;
+	*x0 = *x2;
+	*x1 = *x3;
+	*x2 = x0_temp;
+	*x3 = x1_temp;
+}
+
+void ShiftRow_3Byte(BYTE *x0, BYTE *x1, BYTE *x2, BYTE *x3)
+{
+	BYTE x3_temp = *x3;
+	*x3 = *x2;
+	*x2 = *x1;
+	*x1 = *x0;
+	*x0 = x3_temp;
+}
+
+void ShiftRows(BYTE *state)
+{
+	ShiftRow_1Byte(state[1], state[5], state[9], state[13]);
+	ShiftRow_2Byte(state[2], state[6], state[10], state[14]);
+	ShiftRow_3Byte(state[3], state[7], state[11], state[15]);
 }
 
 /**
@@ -152,7 +182,7 @@ void ShiftRows(BYTE state[(4*N_COLS) + 1])
  * – SubWord() – identical to SubBytes()
  * – Rcon() – xor the Word with the corresponding Word from the Rcon lookup table
  */
-void KeyExpansion(BYTE key[33], WORD w[N_COLS*(N_ROUNDS+1)], int Nk){
+void KeyExpansion(BYTE key[33], WORD *w, int Nk){
 	int i;
 	// Assign the key to the first Round Key in key_schedule
 	for(i = 0; i < Nk; i++)
@@ -205,7 +235,7 @@ int main()
 		printf ("\n");
 
 		WORD key_schedule[N_COLS*(N_ROUNDS+1)];
-		KeyExpansion(cipher, key_schedule, N_WORDS_CIPHER);
+		KeyExpansion(cipher, &key_schedule[0], N_WORDS_CIPHER);
 
 		// TODO: Key Expansion and AES encryption using week 1's AES algorithm.
 		// AES(byte plaintext[4*N_COLS], byte cipher[4*N_COLS], word w[N_COLS*(N_ROUNDS+1)])
@@ -213,14 +243,14 @@ int main()
 		BYTE state[(4 * N_COLS) + 1];
 		// strcpy(state , plaintext);
 		// state = plaintext;
-		AddRoundKey(plaintext, &key_schedule[0]);
+		AddRoundKey(&plaintext[0], &key_schedule[0]);
 		int round;
 		for(round = 1; round <= N_ROUNDS-1; round++)
 		{
-			SubBytes(plaintext);
-			ShiftRows(plaintext);
-			MixColumns(plaintext);
-			AddRoundKey(plaintext, &key_schedule[round * N_COLS]);
+			SubBytes(&plaintext[0]);
+			ShiftRows(&plaintext[0]);
+			MixColumns(&plaintext[0]);
+			AddRoundKey(&plaintext[0], &key_schedule[round * N_COLS]);
 		}
 		SubBytes(state);
 		ShiftRows(state);
