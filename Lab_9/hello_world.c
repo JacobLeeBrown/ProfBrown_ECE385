@@ -91,10 +91,10 @@ void KeyExpansion(byte cipher[33], word w[N_COLS])
  */
 void SubBytes(word *w)
 {
-	byte b1 = *w & 0x000000FF;			//Grab the least significant byte
-	byte b2 = (*w >> 8) & 0x000000FF;	//Grab the second byte
-	byte b3 = (*w >> 16) & 0x000000FF;	//Grab the third byte
-	byte b4 = (*w >> 24) & 0x000000FF;	//Grab the most significant byte
+	byte b1 = *w & 0x00FF;			//Grab the least significant byte
+	byte b2 = (*w >> 8) & 0x00FF;	//Grab the second byte
+	byte b3 = (*w >> 16) & 0x00FF;	//Grab the third byte
+	byte b4 = (*w >> 24) & 0x00FF;	//Grab the most significant byte
 
 	//break each byte into 2 nibbles
 	byte b1_L = b1 & 0x000F;
@@ -114,7 +114,7 @@ void SubBytes(word *w)
 	byte r4 = aes_sbox[b4_M][b4_L];
 
 	//combine results - r1 is least significant byte, r4 is most significant byte
-	*w = (r4 << 24) | (r3 << 16) | (r2 << 8) | (r1)
+	*w = (r4 << 24) | (r3 << 16) | (r2 << 8) | (r1);
 }
 
 /**
