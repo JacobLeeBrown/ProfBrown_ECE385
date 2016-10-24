@@ -12,6 +12,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "aes.c"
 
 #define to_hw_port (volatile char*) 0x00000050
 #define to_hw_sig (volatile char*) 	0x00000040
@@ -22,8 +23,9 @@
 #define byte unsigned char // 8-bit byte
 #define word unsigned long // 32-bit word
 
-#define N_ROUNDS 10		// self-defined constant (Jacob)
-#define N_COLS   4 		// self-defined constant (Jacob)
+#define N_ROUNDS 	10		// self-defined constant (Jacob)
+#define N_COLS   	4 		// self-defined constant (Jacob)
+#define N_WORDS		4		// self-defined constant (Jacob)
 
 char charToHex(char c)
 {
@@ -61,7 +63,7 @@ char charsToHex(char c1, char c2)
  * – RoundKeys can be generated either altogether at the beginning of the AES algorithm,
  *   or during each round
  */
-void AddRoundKey(byte state[4][N_COLS], word w[0, Nb-1])
+void AddRoundKey(byte state[4][N_COLS], word w[N_COLS])
 {
 
 
@@ -75,15 +77,29 @@ void AddRoundKey(byte state[4][N_COLS], word w[0, Nb-1])
  * – SubWord() – identical to SubBytes()
  * – Rcon() – xor the Word with the corresponding Word from the Rcon lookup table
  */
-void KeyExpansion(cipher, word w[0, Nb-1]){
+void KeyExpansion(byte key[33], word w[N_COLS*(N_ROUNDS+1)], N_WORDS){
 	word wtemp;
-	for(int i; i < (N_ROUNDS*N_COLS); i++){			//	for every Word wi in all n RoundKeys (i=1,2,…,4n, n=10){
-		wtemp = w[i-1];								//		wtemp = wi-1
-		if(w[i] % N_COLS == 0)						//		if wi is the first Word in the current RoundKey
-			wtemp = SubWord(RotWord(wtemp)) ^ Rconn;//			wtemp = SubWord(RotWord(wtemp)) xor Rconn
-		for(int i; i < N_COLS; i++){				//	for every Word in the current RoundKey, including the first Word
-			w[i] = w[i-4] ^ wtemp;					//		wi = wi-4 xor wtemp
+	int i;
+	// Assign the key to the first Round Key in key_schedule
+	for(i = 0; i < N_WORDS; i++)
+	{
+		// Since key is just an array of bytes, construct the word from individual bytes 
+		// and assign it to the respective word in the key_schedule
+		w[i] = word(key[4*i], key[4*i+1], key[4*i+2], key[4*i+3]);
+	}
+	//	for every following word in key_schedule
+	for(i = N_WORDS; i < N_COLS*(N_ROUNDS+1); i++)
+	{
+		// temp will hold the previous word
+		word wtemp = w[i-1];
+		// if the current word is the first word of a round key
+		if(i % N_WORDS == 0)
+		{
+			// run special algorithm for first word of a round key
+			wtemp = SubBytes(RotWord(wtemp)) ^ Rconn[i / N_WORDS];
 		}
+		// assign the appropriately modified word to the corresponding word in the key_schedule
+		w[i] = w[i-1] ^ wtemp;
 	}
 
 }
@@ -92,7 +108,7 @@ void KeyExpansion(cipher, word w[0, Nb-1]){
  * SubWord
  * Same as SubBytes()
  */
-void SubWord()
+void SubBytes()
 {
 
 
@@ -102,11 +118,15 @@ void SubWord()
  * RotWord
  * Rotates 4-Byte word left
  */
-void RotWord(uint *word)
+void RotWord(word *word)
 {
 
 }
 
+void MixColumns(byte state[4][N_COLS])
+{
+
+}
 
 int main()
 {
@@ -133,12 +153,14 @@ int main()
 		scanf ("%s", key);
 		printf ("\n");
 
+		word key_schedule[N_COLS*(N_ROUNDS+1)];
+
 		// TODO: Key Expansion and AES encryption using week 1's AES algorithm.
 		// AES(byte plaintext[4*Nb], byte cipher[4*Nb], word w[Nb*(Nr+1)])
 		// Nr = N_ROUNDS = 10, Nb = N_COLS = 4, in = plaintext, out = cipher, w = Cipher Key
-		uchar state[4][N_COLS];
+		byte state[4 * N_COLS];
 		state = plaintext;
-		AddRoundKey(state, w[0, N_COLS-1]);
+		AddRoundKey(state, key_schedule, 0);
 		int round;
 		for(round = 1; round <= N_ROUNDS-1; round++)
 		{
