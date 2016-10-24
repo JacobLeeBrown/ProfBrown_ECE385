@@ -61,7 +61,7 @@ char charsToHex(char c1, char c2)
  * – RoundKeys can be generated either altogether at the beginning of the AES algorithm,
  *   or during each round
  */
-void AddRoundKey(byte state[4][N_COLS], word w[0, Nb-1])
+void AddRoundKey(byte state[4][N_COLS], word w[N_COLS])
 {
 
 
@@ -75,24 +75,24 @@ void AddRoundKey(byte state[4][N_COLS], word w[0, Nb-1])
  * – SubWord() – identical to SubBytes()
  * – Rcon() – xor the Word with the corresponding Word from the Rcon lookup table
  */
-void KeyExpansion(cipher, word w[0, Nb-1]){
+void KeyExpansion(byte cipher[33], word w[N_COLS])
+{
 	word wtemp;
 	for(int i; i < (N_ROUNDS*N_COLS); i++){			//	for every Word wi in all n RoundKeys (i=1,2,…,4n, n=10){
 		wtemp = w[i-1];								//		wtemp = wi-1
 		if(w[i] % N_COLS == 0)						//		if wi is the first Word in the current RoundKey
-			wtemp = SubWord(RotWord(wtemp)) ^ Rconn;//			wtemp = SubWord(RotWord(wtemp)) xor Rconn
+			wtemp = SubBytes(RotWord(wtemp)) ^ Rconn;//			wtemp = SubWord(RotWord(wtemp)) xor Rconn
 		for(int i; i < N_COLS; i++){				//	for every Word in the current RoundKey, including the first Word
 			w[i] = w[i-4] ^ wtemp;					//		wi = wi-4 xor wtemp
 		}
 	}
-
 }
 
 /**
  * SubWord
  * Same as SubBytes()
  */
-void SubWord()
+void SubBytes(word *w)
 {
 
 
@@ -102,8 +102,19 @@ void SubWord()
  * RotWord
  * Rotates 4-Byte word left
  */
-void RotWord(uint *word)
+void RotWord(word *w)
 {
+	word temp = 0x00000000;		//Create an empty 4-byte temp variable
+	temp = *w & 0xFF000000;		//Bit-mask first byte of word w and store in temp
+	temp >>= 24;				//Shift temp right by 3 bytes
+	*w <<= 8;					//Shift word w by 1 byte
+	*w |= temp;					//Logical OR such that word w now has the first byte
+								//moved to the last byte
+}
+
+MixColumns(byte state)
+{
+
 
 }
 
@@ -134,9 +145,9 @@ int main()
 		printf ("\n");
 
 		// TODO: Key Expansion and AES encryption using week 1's AES algorithm.
-		// AES(byte plaintext[4*Nb], byte cipher[4*Nb], word w[Nb*(Nr+1)])
+		// AES(byte plaintext[4*N_COLS], byte cipher[4*N_COLS], word w[N_COLS*(N_ROUNDS+1)])
 		// Nr = N_ROUNDS = 10, Nb = N_COLS = 4, in = plaintext, out = cipher, w = Cipher Key
-		uchar state[4][N_COLS];
+		byte state[4][N_COLS];
 		state = plaintext;
 		AddRoundKey(state, w[0, N_COLS-1]);
 		int round;
