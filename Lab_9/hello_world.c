@@ -19,9 +19,9 @@
 #define to_sw_port (char*) 			0x00000030
 #define to_sw_sig (char*) 			0x00000020
 
-#define N_ROUNDS 	10		// self-defined constant (Jacob)
-#define N_COLS   	4 		// self-defined constant (Jacob)
-#define N_WORDS		4		// self-defined constant (Jacob)
+#define N_ROUNDS 		10		// self-defined constant (Jacob)
+#define N_COLS   		4 		// self-defined constant (Jacob)
+#define N_WORDS_CIPHER	4		// self-defined constant (Jacob)
 
 char charToHex(char c)
 {
@@ -59,14 +59,14 @@ char charsToHex(char c1, char c2)
  * – RoundKeys can be generated either altogether at the beginning of the AES algorithm,
  *   or during each round
  */
-void AddRoundKey(byte state[4*N_COLS], word round_key[4*N_COLS])
+void AddRoundKey(BYTE state[4*N_COLS + 1], WORD * round_key_start)
 {
 	int i;
 	// for all 16 bytes in State and the current round_key
 	for(i = 0; i < (4 * N_COLS); i++)
 	{
 		// update state's bytes by XOR-ing with corresponding round_key byte
-		state[i] ^= round_key[i];
+		state[i] ^= round_key_start[i];
 	}
 }
 
@@ -78,26 +78,26 @@ void AddRoundKey(byte state[4*N_COLS], word round_key[4*N_COLS])
  * – SubWord() – identical to SubBytes()
  * – Rcon() – xor the Word with the corresponding Word from the Rcon lookup table
  */
-void KeyExpansion(byte key[33], word w[N_COLS*(N_ROUNDS+1)], N_WORDS){
-	word wtemp;
+void KeyExpansion(BYTE key[33], WORD w[N_COLS*(N_ROUNDS+1)], int Nk){
+	WORD wtemp;
 	int i;
 	// Assign the key to the first Round Key in key_schedule
-	for(i = 0; i < N_WORDS; i++)
+	for(i = 0; i < Nk; i++)
 	{
-		// Since key is just an array of bytes, construct the word from individual bytes 
+		// Since key is just an array of bytes, construct the word from individual bytes
 		// and assign it to the respective word in the key_schedule
 		w[i] = word(key[4*i], key[4*i+1], key[4*i+2], key[4*i+3]);
 	}
 	//	for every following word in key_schedule
-	for(i = N_WORDS; i < N_COLS*(N_ROUNDS+1); i++)
+	for(i = Nk; i < N_COLS*(N_ROUNDS+1); i++)
 	{
 		// temp will hold the previous word
-		word wtemp = w[i-1];
+		WORD wtemp = w[i-1];
 		// if the current word is the first word of a round key
-		if(i % N_WORDS == 0)
+		if(i % Nk == 0)
 		{
 			// run special algorithm for first word of a round key
-			wtemp = SubWord(RotWord(wtemp)) ^ Rconn[i / N_WORDS];
+			wtemp = SubWord(RotWord(wtemp)) ^ Rcon[i / Nk];
 		}
 		// assign the appropriately modified word to the corresponding word in the key_schedule
 		w[i] = w[i-1] ^ wtemp;
@@ -108,41 +108,50 @@ void KeyExpansion(byte key[33], word w[N_COLS*(N_ROUNDS+1)], N_WORDS){
  * SubWord
  * Same as SubBytes(), but acts only on a single word at a time
  */
-void SubWord(word *w)
+void SubWord(WORD *w)
 {
-	byte b1 = *w & 0x00FF;			//Grab the least significant byte
-	byte b2 = (*w >> 8) & 0x00FF;	//Grab the second byte
-	byte b3 = (*w >> 16) & 0x00FF;	//Grab the third byte
-	byte b4 = (*w >> 24) & 0x00FF;	//Grab the most significant byte
+	BYTE b1 = *w & 0x00FF;			//Grab the least significant byte
+	BYTE b2 = (*w >> 8) & 0x00FF;	//Grab the second byte
+	BYTE b3 = (*w >> 16) & 0x00FF;	//Grab the third byte
+	BYTE b4 = (*w >> 24) & 0x00FF;	//Grab the most significant byte
 
 	//break each byte into 2 nibbles
-	byte b1_L = b1 & 0x000F;
-	byte b1_M = (b1 >> 4) & 0x000F;
-	byte b2_L = b2 & 0x000F;
-	byte b2_M = (b2 >> 4) & 0x000F;
-	byte b3_L = b3 & 0x000F;
-	byte b3_M = (b3 >> 4) & 0x000F;
-	byte b4_L = b4 & 0x000F;
-	byte b4_M = (b4 >> 4) & 0x000F;
+	BYTE b1_L = b1 & 0x000F;
+	BYTE b1_M = (b1 >> 4) & 0x000F;
+	BYTE b2_L = b2 & 0x000F;
+	BYTE b2_M = (b2 >> 4) & 0x000F;
+	BYTE b3_L = b3 & 0x000F;
+	BYTE b3_M = (b3 >> 4) & 0x000F;
+	BYTE b4_L = b4 & 0x000F;
+	BYTE b4_M = (b4 >> 4) & 0x000F;
 
 	//get results - "first nibble in the first index (row),
 	//				 second nibble in the second index (column)"
-	byte r1 = aes_sbox[b1_M][b1_L];
-	byte r2 = aes_sbox[b2_M][b2_L];
-	byte r3 = aes_sbox[b3_M][b3_L];
-	byte r4 = aes_sbox[b4_M][b4_L];
+	BYTE r1 = aes_sbox[b1_M][b1_L];
+	BYTE r2 = aes_sbox[b2_M][b2_L];
+	BYTE r3 = aes_sbox[b3_M][b3_L];
+	BYTE r4 = aes_sbox[b4_M][b4_L];
 
 	//combine results - r1 is least significant byte, r4 is most significant byte
 	*w = (r4 << 24) | (r3 << 16) | (r2 << 8) | (r1);
 }
 
 /**
+ * SubBytes
+ * Substitutes bytes of the current state based on the Rijndael S-box
+ */
+void SubBytes(BYTE state[4*N_COLS + 1])
+{
+
+}
+
+/**
  * RotWord
  * Rotates 4-Byte word left
  */
-void RotWord(word *w)
+void RotWord(WORD *w)
 {
-	word temp = 0x00000000;		//Create an empty 4-byte temp variable
+	WORD temp = 0x00000000;		//Create an empty 4-byte temp variable
 	temp = *w & 0xFF000000;		//Bit-mask first byte of word w and store in temp
 	temp >>= 24;				//Shift temp right by 3 bytes
 	*w <<= 8;					//Shift word w by 1 byte
@@ -150,17 +159,22 @@ void RotWord(word *w)
 								//moved to the last byte
 }
 
-void MixColumns(byte state[4*N_COLS])
+void MixColumns(BYTE state[(4*N_COLS) + 1])
+{
+
+}
+
+void ShiftRows(BYTE state[(4*N_COLS) + 1])
 {
 
 }
 
 int main()
 {
-	int i;
-	unsigned char plaintext[33]; //should be 1 more character to account for string terminator
-	unsigned char key[33];
-	unsigned char cipher[33];
+	// int i; // Unused for week 1, may be needed in week 2 (Jacob)
+	BYTE plaintext[33]; //should be 1 more character to account for string terminator
+	BYTE key[33];
+	BYTE cipher[33];
 
 	// Start with pressing reset
 	*to_hw_sig = 0;
@@ -180,26 +194,30 @@ int main()
 		scanf ("%s", key);
 		printf ("\n");
 
-		word key_schedule[N_COLS*(N_ROUNDS+1)];
+		WORD key_schedule[N_COLS*(N_ROUNDS+1)];
+		KeyExpansion(cipher, key_schedule, N_WORDS_CIPHER);
 
 		// TODO: Key Expansion and AES encryption using week 1's AES algorithm.
 		// AES(byte plaintext[4*N_COLS], byte cipher[4*N_COLS], word w[N_COLS*(N_ROUNDS+1)])
 		// Nr = N_ROUNDS = 10, Nb = N_COLS = 4, in = plaintext, out = cipher, w = Cipher Key
-		byte state[4 * N_COLS];
-		state = plaintext;
-		AddRoundKey(state, key_schedule, 0);
+		BYTE state[(4 * N_COLS) + 1];
+		strcpy(state , plaintext);
+		// state = plaintext;
+		AddRoundKey(state, key_schedule[0, N_COLS-1]);
 		int round;
 		for(round = 1; round <= N_ROUNDS-1; round++)
 		{
 			SubBytes(state);
 			ShiftRows(state);
 			MixColumns(state);
-			AddRoundKey(state, key_schedule[round * N_COLS, (round + 1) * N_COLS - 1]);
+			WORD * round_key_start = key_schedule[round * N_COLS];
+			AddRoundKey(state, round_key_start);
 		}
 		SubBytes(state);
 		ShiftRows(state);
-		AddRoundKey(state, w[N_ROUNDS * N_COLS, (N_ROUNDS + 1) * N_COLS - 1]);
-		cipher = state + "\n";
+		WORD * last_round_key = key_schedule[N_ROUNDS * N_COLS];
+		AddRoundKey(state, last_round_key);
+		// cipher = state + "\n";
 
 
 		// TODO: display the encrypted message.
@@ -248,4 +266,3 @@ int main()
 
 	return 0;
 }
-
