@@ -49,6 +49,15 @@ char charsToHex(char c1, char c2)
 	return (hex1 << 4) + hex2;
 }
 
+WORD make_word(BYTE b1, BYTE b2, BYTE b3, BYTE b4)
+{
+	WORD w = 0x01000000 * b1 +
+			 0x00010000 * b2 +
+			 0x00000100 * b3 +
+			 0x00000001 * b4;
+	return w;
+}
+
 // TODO: AES Encryption related function calls
 
 /**
@@ -67,40 +76,6 @@ void AddRoundKey(BYTE state[4*N_COLS + 1], WORD * round_key_start)
 	{
 		// update state's bytes by XOR-ing with corresponding round_key byte
 		state[i] ^= round_key_start[i];
-	}
-}
-
-/**
- * KeyExpansion
- * Generates a RoundKey at a time based on the previous RoundKey (use the Cipher Key
- * to generate the first RoundKey)
- * – RotWord() – circularly shift each Byte in a Word up by 1 Byte
- * – SubWord() – identical to SubBytes()
- * – Rcon() – xor the Word with the corresponding Word from the Rcon lookup table
- */
-void KeyExpansion(BYTE key[33], WORD w[N_COLS*(N_ROUNDS+1)], int Nk){
-	WORD wtemp;
-	int i;
-	// Assign the key to the first Round Key in key_schedule
-	for(i = 0; i < Nk; i++)
-	{
-		// Since key is just an array of bytes, construct the word from individual bytes
-		// and assign it to the respective word in the key_schedule
-		w[i] = word(key[4*i], key[4*i+1], key[4*i+2], key[4*i+3]);
-	}
-	//	for every following word in key_schedule
-	for(i = Nk; i < N_COLS*(N_ROUNDS+1); i++)
-	{
-		// temp will hold the previous word
-		WORD wtemp = w[i-1];
-		// if the current word is the first word of a round key
-		if(i % Nk == 0)
-		{
-			// run special algorithm for first word of a round key
-			wtemp = SubWord(RotWord(wtemp)) ^ Rcon[i / Nk];
-		}
-		// assign the appropriately modified word to the corresponding word in the key_schedule
-		w[i] = w[i-1] ^ wtemp;
 	}
 }
 
@@ -169,6 +144,41 @@ void ShiftRows(BYTE state[(4*N_COLS) + 1])
 
 }
 
+/**
+ * KeyExpansion
+ * Generates a RoundKey at a time based on the previous RoundKey (use the Cipher Key
+ * to generate the first RoundKey)
+ * – RotWord() – circularly shift each Byte in a Word up by 1 Byte
+ * – SubWord() – identical to SubBytes()
+ * – Rcon() – xor the Word with the corresponding Word from the Rcon lookup table
+ */
+void KeyExpansion(BYTE key[33], WORD w[N_COLS*(N_ROUNDS+1)], int Nk){
+	int i;
+	// Assign the key to the first Round Key in key_schedule
+	for(i = 0; i < Nk; i++)
+	{
+		// Since key is just an array of bytes, construct the word from individual bytes
+		// and assign it to the respective word in the key_schedule
+		w[i] = make_word(key[4*i], key[4*i+1], key[4*i+2], key[4*i+3]);
+	}
+	//	for every following word in key_schedule
+	for(i = Nk; i < N_COLS*(N_ROUNDS+1); i++)
+	{
+		// temp will hold the previous word
+		WORD wtemp = w[i-1];
+		// if the current word is the first word of a round key
+		if(i % Nk == 0)
+		{
+			// run special algorithm for first word of a round key
+			RotWord(&wtemp);
+			SubWord(&wtemp);
+			wtemp ^= Rcon[i / Nk];
+		}
+		// assign the appropriately modified word to the corresponding word in the key_schedule
+		w[i] = w[i-1] ^ wtemp;
+	}
+}
+
 int main()
 {
 	// int i; // Unused for week 1, may be needed in week 2 (Jacob)
@@ -201,22 +211,20 @@ int main()
 		// AES(byte plaintext[4*N_COLS], byte cipher[4*N_COLS], word w[N_COLS*(N_ROUNDS+1)])
 		// Nr = N_ROUNDS = 10, Nb = N_COLS = 4, in = plaintext, out = cipher, w = Cipher Key
 		BYTE state[(4 * N_COLS) + 1];
-		strcpy(state , plaintext);
+		// strcpy(state , plaintext);
 		// state = plaintext;
-		AddRoundKey(state, key_schedule[0, N_COLS-1]);
+		AddRoundKey(plaintext, &key_schedule[0]);
 		int round;
 		for(round = 1; round <= N_ROUNDS-1; round++)
 		{
-			SubBytes(state);
-			ShiftRows(state);
-			MixColumns(state);
-			WORD * round_key_start = key_schedule[round * N_COLS];
-			AddRoundKey(state, round_key_start);
+			SubBytes(plaintext);
+			ShiftRows(plaintext);
+			MixColumns(plaintext);
+			AddRoundKey(plaintext, &key_schedule[round * N_COLS]);
 		}
 		SubBytes(state);
 		ShiftRows(state);
-		WORD * last_round_key = key_schedule[N_ROUNDS * N_COLS];
-		AddRoundKey(state, last_round_key);
+		AddRoundKey(state, &key_schedule[N_ROUNDS * N_COLS]);
 		// cipher = state + "\n";
 
 
