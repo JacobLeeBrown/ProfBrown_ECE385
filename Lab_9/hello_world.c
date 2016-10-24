@@ -19,10 +19,6 @@
 #define to_sw_port (char*) 			0x00000030
 #define to_sw_sig (char*) 			0x00000020
 
-// Copied from aes.c (Jacob)
-#define byte unsigned char // 8-bit byte
-#define word unsigned long // 32-bit word
-
 #define N_ROUNDS 	10		// self-defined constant (Jacob)
 #define N_COLS   	4 		// self-defined constant (Jacob)
 #define N_WORDS		4		// self-defined constant (Jacob)
