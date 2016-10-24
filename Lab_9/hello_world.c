@@ -12,15 +12,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "aes.c"
 
 #define to_hw_port (volatile char*) 0x00000050
 #define to_hw_sig (volatile char*) 	0x00000040
 #define to_sw_port (char*) 			0x00000030
 #define to_sw_sig (char*) 			0x00000020
-
-// Copied from aes.c (Jacob)
-#define byte unsigned char // 8-bit byte
-#define word unsigned long // 32-bit word
 
 #define N_ROUNDS 10		// self-defined constant (Jacob)
 #define N_COLS   4 		// self-defined constant (Jacob)
@@ -94,8 +91,30 @@ void KeyExpansion(byte cipher[33], word w[N_COLS])
  */
 void SubBytes(word *w)
 {
+	byte b1 = *w & 0x000000FF;			//Grab the least significant byte
+	byte b2 = (*w >> 8) & 0x000000FF;	//Grab the second byte
+	byte b3 = (*w >> 16) & 0x000000FF;	//Grab the third byte
+	byte b4 = (*w >> 24) & 0x000000FF;	//Grab the most significant byte
 
+	//break each byte into 2 nibbles
+	byte b1_L = b1 & 0x000F;
+	byte b1_M = (b1 >> 4) & 0x000F;
+	byte b1_L = b2 & 0x000F;
+	byte b1_M = (b2 >> 4) & 0x000F;
+	byte b1_L = b3 & 0x000F;
+	byte b1_M = (b3 >> 4) & 0x000F;
+	byte b1_L = b4 & 0x000F;
+	byte b1_M = (b4 >> 4) & 0x000F;
 
+	//get results - "first nibble in the first index (row),
+	//				 second nibble in the second index (column)"
+	byte r1 = aes_sbox[b1_M][b1_L];
+	byte r2 = aes_sbox[b2_M][b2_L];
+	byte r3 = aes_sbox[b3_M][b3_L];
+	byte r4 = aes_sbox[b4_M][b4_L];
+
+	//combine results - r1 is least significant byte, r4 is most significant byte
+	*w = (r4 << 24) | (r3 << 16) | (r2 << 8) | (r1)
 }
 
 /**
