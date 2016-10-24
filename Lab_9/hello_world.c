@@ -96,7 +96,7 @@ void KeyExpansion(byte key[33], word w[N_COLS*(N_ROUNDS+1)], N_WORDS){
 		if(i % N_WORDS == 0)
 		{
 			// run special algorithm for first word of a round key
-			wtemp = SubBytes(RotWord(wtemp)) ^ Rconn[i / N_WORDS];
+			wtemp = SubWord(RotWord(wtemp)) ^ Rconn[i / N_WORDS];
 		}
 		// assign the appropriately modified word to the corresponding word in the key_schedule
 		w[i] = w[i-1] ^ wtemp;
@@ -105,9 +105,9 @@ void KeyExpansion(byte key[33], word w[N_COLS*(N_ROUNDS+1)], N_WORDS){
 
 /**
  * SubWord
- * Same as SubBytes()
+ * Same as SubBytes(), but acts only on a single word at a time
  */
-void SubBytes(word *w)
+void SubWord(word *w)
 {
 	byte b1 = *w & 0x00FF;			//Grab the least significant byte
 	byte b2 = (*w >> 8) & 0x00FF;	//Grab the second byte
@@ -149,13 +149,7 @@ void RotWord(word *w)
 								//moved to the last byte
 }
 
-MixColumns(byte state)
-{
-
-
-}
-
-void MixColumns(byte state[4][N_COLS])
+void MixColumns(byte state[4*N_COLS])
 {
 
 }
