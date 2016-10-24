@@ -118,12 +118,12 @@ void SubWord(word *w)
 	//break each byte into 2 nibbles
 	byte b1_L = b1 & 0x000F;
 	byte b1_M = (b1 >> 4) & 0x000F;
-	byte b1_L = b2 & 0x000F;
-	byte b1_M = (b2 >> 4) & 0x000F;
-	byte b1_L = b3 & 0x000F;
-	byte b1_M = (b3 >> 4) & 0x000F;
-	byte b1_L = b4 & 0x000F;
-	byte b1_M = (b4 >> 4) & 0x000F;
+	byte b2_L = b2 & 0x000F;
+	byte b2_M = (b2 >> 4) & 0x000F;
+	byte b3_L = b3 & 0x000F;
+	byte b3_M = (b3 >> 4) & 0x000F;
+	byte b4_L = b4 & 0x000F;
+	byte b4_M = (b4 >> 4) & 0x000F;
 
 	//get results - "first nibble in the first index (row),
 	//				 second nibble in the second index (column)"
