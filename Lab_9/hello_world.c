@@ -59,10 +59,15 @@ char charsToHex(char c1, char c2)
  * – RoundKeys can be generated either altogether at the beginning of the AES algorithm,
  *   or during each round
  */
-void AddRoundKey(byte state[4][N_COLS], word w[N_COLS])
+void AddRoundKey(byte state[4*N_COLS], word round_key[4*N_COLS])
 {
-
-
+	int i;
+	// for all 16 bytes in State and the current round_key
+	for(i = 0; i < (4 * N_COLS); i++)
+	{
+		// update state's bytes by XOR-ing with corresponding round_key byte
+		state[i] ^= round_key[i];
+	}
 }
 
 /**
@@ -189,7 +194,7 @@ int main()
 			SubBytes(state);
 			ShiftRows(state);
 			MixColumns(state);
-			AddRoundKey(state, w[round * N_COLS, (round + 1) * N_COLS - 1]);
+			AddRoundKey(state, key_schedule[round * N_COLS, (round + 1) * N_COLS - 1]);
 		}
 		SubBytes(state);
 		ShiftRows(state);
