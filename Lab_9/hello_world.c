@@ -19,8 +19,8 @@
 #define to_sw_sig (char*) 			0x00000020
 
 // Copied from aes.c (Jacob)
-#define uchar unsigned char // 8-bit byte
-#define uint unsigned long // 32-bit word
+#define byte unsigned char // 8-bit byte
+#define word unsigned long // 32-bit word
 
 #define N_ROUNDS 10		// self-defined constant (Jacob)
 #define N_COLS   4 		// self-defined constant (Jacob)
@@ -61,7 +61,7 @@ char charsToHex(char c1, char c2)
  * – RoundKeys can be generated either altogether at the beginning of the AES algorithm,
  *   or during each round
  */
-void AddRoundKey(uchar state[4][N_COLS], word w[0, Nb-1])
+void AddRoundKey(byte state[4][N_COLS], word w[0, Nb-1])
 {
 
 
@@ -92,7 +92,7 @@ void KeyExpansion(cipher, word w[0, Nb-1]){
  * SubWord
  * Same as SubBytes()
  */
-SubWord()
+void SubWord()
 {
 
 
@@ -102,8 +102,8 @@ SubWord()
  * RotWord
  * Rotates 4-Byte word left
  */
-RotWord(){
-
+void RotWord(uint *word)
+{
 
 }
 
