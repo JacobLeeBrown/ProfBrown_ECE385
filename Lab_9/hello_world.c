@@ -101,25 +101,57 @@ void KeyExpansion(byte key[33], word w[N_COLS*(N_ROUNDS+1)], N_WORDS){
 		// assign the appropriately modified word to the corresponding word in the key_schedule
 		w[i] = w[i-1] ^ wtemp;
 	}
-
 }
 
 /**
  * SubWord
  * Same as SubBytes()
  */
-void SubBytes()
+void SubBytes(word *w)
 {
+	byte b1 = *w & 0x00FF;			//Grab the least significant byte
+	byte b2 = (*w >> 8) & 0x00FF;	//Grab the second byte
+	byte b3 = (*w >> 16) & 0x00FF;	//Grab the third byte
+	byte b4 = (*w >> 24) & 0x00FF;	//Grab the most significant byte
 
+	//break each byte into 2 nibbles
+	byte b1_L = b1 & 0x000F;
+	byte b1_M = (b1 >> 4) & 0x000F;
+	byte b1_L = b2 & 0x000F;
+	byte b1_M = (b2 >> 4) & 0x000F;
+	byte b1_L = b3 & 0x000F;
+	byte b1_M = (b3 >> 4) & 0x000F;
+	byte b1_L = b4 & 0x000F;
+	byte b1_M = (b4 >> 4) & 0x000F;
 
+	//get results - "first nibble in the first index (row),
+	//				 second nibble in the second index (column)"
+	byte r1 = aes_sbox[b1_M][b1_L];
+	byte r2 = aes_sbox[b2_M][b2_L];
+	byte r3 = aes_sbox[b3_M][b3_L];
+	byte r4 = aes_sbox[b4_M][b4_L];
+
+	//combine results - r1 is least significant byte, r4 is most significant byte
+	*w = (r4 << 24) | (r3 << 16) | (r2 << 8) | (r1);
 }
 
 /**
  * RotWord
  * Rotates 4-Byte word left
  */
-void RotWord(word *word)
+void RotWord(word *w)
 {
+	word temp = 0x00000000;		//Create an empty 4-byte temp variable
+	temp = *w & 0xFF000000;		//Bit-mask first byte of word w and store in temp
+	temp >>= 24;				//Shift temp right by 3 bytes
+	*w <<= 8;					//Shift word w by 1 byte
+	*w |= temp;					//Logical OR such that word w now has the first byte
+								//moved to the last byte
+}
+
+MixColumns(byte state)
+{
+
 
 }
 
@@ -156,7 +188,7 @@ int main()
 		word key_schedule[N_COLS*(N_ROUNDS+1)];
 
 		// TODO: Key Expansion and AES encryption using week 1's AES algorithm.
-		// AES(byte plaintext[4*Nb], byte cipher[4*Nb], word w[Nb*(Nr+1)])
+		// AES(byte plaintext[4*N_COLS], byte cipher[4*N_COLS], word w[N_COLS*(N_ROUNDS+1)])
 		// Nr = N_ROUNDS = 10, Nb = N_COLS = 4, in = plaintext, out = cipher, w = Cipher Key
 		byte state[4 * N_COLS];
 		state = plaintext;
