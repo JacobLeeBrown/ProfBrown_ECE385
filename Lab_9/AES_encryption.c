@@ -23,6 +23,10 @@
 #define N_COLS   		4 		// self-defined constant (Jacob)
 #define N_WORDS_CIPHER	4		// self-defined constant (Jacob)
 
+/* ~~~ Helper functions ~~~ */
+
+/* Functions that turn characters into hex values */
+
 char charToHex(char c)
 {	
 	char hex = c;
@@ -49,6 +53,9 @@ unsigned char charsToHex(char c1, char c2)
 	return (hex1 << 4) + hex2;
 }
 
+/* Our defined helper functions */
+
+// Takes four Bytes and returns a word comstructed from them
 WORD make_word(BYTE b1, BYTE b2, BYTE b3, BYTE b4)
 {
 	WORD w = 0x01000000 * b1 +
@@ -56,6 +63,28 @@ WORD make_word(BYTE b1, BYTE b2, BYTE b3, BYTE b4)
 			 0x00000100 * b3 +
 			 0x00000001 * b4;
 	return w;
+}
+
+// Prints state in 4 x 4 Byte column-major order
+void print_state(BYTE * state)
+{
+	printf("%02x %02x %02x %02x\n", state[0], state[4], state[8], state[12]);
+	printf("%02x %02x %02x %02x\n", state[1], state[5], state[9], state[13]);
+	printf("%02x %02x %02x %02x\n", state[2], state[6], state[10], state[14]);
+	printf("%02x %02x %02x %02x\n", state[3], state[7], state[11], state[15]);
+	printf ("\n");
+}
+
+// Prints specified RoundKey of the Key Schedule
+void print_key_schedule(WORD* ks, int index)
+{
+	int i;
+	for(i = 0; i < 4; i++)
+		BYTE b0 = ks[index] >> (8 * i) & 0x00FF;		//Grab the least significant byte
+		BYTE b1 = (ks[index+1] >> (8 * i)) & 0x00FF;	//Grab the second byte
+		BYTE b2 = (ks[index+2] >> (8 * i)) & 0x00FF;	//Grab the third byte
+		BYTE b3 = (ks[index+3] >> (8 * i)) & 0x00FF;	//Grab the most significant byte
+		printf("%02x %02x %02x %02x\n", b0, b1, b2, b3);
 }
 
 // AES Encryption related function calls
@@ -228,136 +257,144 @@ void KeyExpansion(BYTE key[33], WORD *w, int Nk){
 			wtemp ^= Rcon[i / Nk];
 		}
 		// assign the appropriately modified word to the corresponding word in the key_schedule
-		//printf("Key Schedule Words: %d = %04x", i, (w[i-1] ^ wtemp));
 		w[i] = w[i-1] ^ wtemp;
 	}
 }
 
-void print_key_schedule(WORD* ks, int index)
-{
-	int i;
-	for(i = 0; i < 4; i++)
-		BYTE b0 = ks[index] >> (8 * i) & 0x00FF;	//Grab the least significant byte
-		BYTE b1 = (ks[index+1] >> (8 * i)) & 0x00FF;	//Grab the second byte
-		BYTE b2 = (ks[index+2] >> (8 * i)) & 0x00FF;	//Grab the third byte
-		BYTE b3 = (ks[index+3] >> (8 * i)) & 0x00FF;	//Grab the most significant byte
-		printf("%02x %02x %02x %02x\n", b0, b1, b2, b3);
-}
-
-void print_state(BYTE * state)
-{
-	printf("%02x %02x %02x %02x\n", state[0], state[4], state[8], state[12]);
-	printf("%02x %02x %02x %02x\n", state[1], state[5], state[9], state[13]);
-	printf("%02x %02x %02x %02x\n", state[2], state[6], state[10], state[14]);
-	printf("%02x %02x %02x %02x\n", state[3], state[7], state[11], state[15]);
-	printf ("\n");
-}
-
 int main()
 {
-	//int i;
-	//BYTE plaintext[33]; //should be 1 more character to account for string terminator
-	//BYTE key[33];
-	//BYTE cipher[33];
+	int i;
+	// 33 instead of 32 Bytes because of addition of newline character at the end
+	BYTE plaintext[33]; 
+	BYTE key[33];
 
-	printf("\n");
+	// Start with pressing reset
+	*to_hw_sig = 0;
+	*to_hw_port = 0;
+	printf("Press reset!\n");
+	while (*to_sw_sig != 3);
 
-	/*printf("\nEnter message:\n");
-	scanf ("%s", plaintext);
-	printf("\nTransmitting message...\n");
-	for (i = 0; i < 32; i+=2)
+	while (1)
 	{
-		// (charToHex(str[i])&0xFF)
-		printf("Checking byte: %d = %02x\n", i/2, charsToHex(plaintext[i], plaintext[i+1])&0xFF);
+		*to_hw_sig = 0;
+		printf("\n");
+
+		// Acquire the original message
+		printf("\nEnter message:\n");
+		scanf ("%s", plaintext);
+		printf("\nTransmitting message...\n");
+		for (i = 0; i < 32; i+=2)
+		{
+			//printf("Checking byte: %d = %02x\n", i/2, charsToHex(plaintext[i], plaintext[i+1])&0xFF);
+			*to_hw_sig = 1;
+			*to_hw_port = charsToHex(plaintext[i], plaintext[i+1]);
+			while (*to_sw_sig != 1);
+			*to_hw_sig = 2;
+			while (*to_sw_sig != 0);
+		}
+		printf ("\n");
+		*to_hw_sig = 0;	// Set HW signal to 0 to exit READ_MSG/MSG_ACK loop
+
+		// Convert 32 Byte plaintext to condensed 16 Byte state
+		BYTE state[4 * N_COLS];
+		for(i = 0; i < (4 * N_COLS); i++)
+		{
+			state[i] = charsToHex(plaintext[2*i], plaintext[2*i+1]);
+		}
+
+		// Acquire the original key
+		printf("\nEnter cipher:\n");
+		scanf ("%s", cipher);
+		printf("\nTransmitting cipher...\n");
+		for (i = 0; i < 32; i+=2)
+		{
+			// printf("Checking byte: %d = %02x\n", i/2, charsToHex(cipher[i], cipher[i+1])&0xFF);
+			*to_hw_sig = 2;
+			*to_hw_port = charsToHex(key[i], key[i+1]);
+			while (*to_sw_sig != 1);
+			*to_hw_sig = 1;
+			while (*to_sw_sig != 0);
+		}
+		printf ("\n");
+		*to_hw_sig = 3;	// Set HW signal to 3 to exit READ_KEY/KEY_ACK loop
+
+		// Convert 32 Byte cipher to condensed 16 Byte key
+		BYTE key[4 * N_WORDS_CIPHER];
+		for(i = 0; i < (4 * N_WORDS_CIPHER); i++)
+		{
+			key[i] = charsToHex(cipher[2*i], cipher[2*i+1]);
+		}
+
+		// Instantiate key_schedule and populate with KeyExpansion
+		WORD key_schedule[N_COLS*(N_ROUNDS+1)];
+		KeyExpansion(key, key_schedule, N_WORDS_CIPHER);
+		// Debugging method to print any RoundKey in the schedule
+		print_key_schedule(key_schedule, 0);
+
+		/* 
+		 * AES(byte plaintext[4*N_COLS], byte cipher[4*N_COLS], word w[N_COLS*(N_ROUNDS+1)])
+		 * Nr = N_ROUNDS = 10, Nb = N_COLS = 4, in = plaintext, out = cipher, w = Cipher Key
+		 */
+		AddRoundKey(state, &key_schedule[0]);
+		int round;
+		for(round = 1; round <= N_ROUNDS-1; round++)
+		{
+			SubBytes(state);
+			ShiftRows(state);
+			MixColumns(state);
+			AddRoundKey(state, &key_schedule[round * N_COLS]);
+		}
+		SubBytes(state);
+		ShiftRows(state);
+		AddRoundKey(state, &key_schedule[N_ROUNDS * N_COLS]);
+
+		// Display the encrypted message.
+		printf("\nEncrypted message is\n");
+		for(i = 0; i < 32; i+=2)
+		{
+			printf("%02x", charsToHex(state[i], state[i+1]) & 0xFF);
+		}
+
+
+		// ~~~ All Week 2 ~~~ (Jacob)
+
+		// Transmit encrypted message to hardware side for decryption.
+		/*printf("\nTransmitting message...\n");
+
+		for (i = 0; i < 16; i++)
+		{
+			*to_hw_sig = 1;
+			*to_hw_port = encryptedMsg[i]; // encryptedMsg is your encrypted message
+			// Consider to use charToHex() if your encrypted message is a string.
+			while (*to_sw_sig != 1);
+			*to_hw_sig = 2;
+			while (*to_sw_sig != 0);
+		}
+		*to_hw_sig = 0;
+
+		// Transmit encrypted message to hardware side for decryption.
+		printf("\nTransmitting key...\n");
+
+		//TODO: Transmit key
+
+		printf("\n\n");
+
+		while (*to_sw_sig != 2);
+		printf("\nRetrieving message...\n");
+		for (i = 0; i < 16; ++i)
+		{
+			*to_hw_sig = 1;
+			while (*to_sw_sig != 1);
+			str[i] = *to_sw_port;
+			*to_hw_sig = 2;
+			while (*to_sw_sig != 0);
+		}
+
+		printf("\n\n");
+
+		printf("Decoded message:\n");
+
+		// TODO: print decoded message*/
 	}
-	printf ("\n");*/
-
-	/*printf("\nEnter key:\n");
-	scanf ("%s", key);
-	printf("\nTransmitting key...\n");
-	for (i = 0; i < 32; i+=2)
-	{
-		// (charToHex(str[i])&0xFF)
-		printf("Checking byte: %d = %x\n", i/2, charsToHex(key[i], key[i+1])&0xFF);
-	}
-	printf ("\n");*/
-
-	// Key Expansion and AES encryption using week 1's AES algorithm.
-
-	//WORD key_schedule[N_COLS*(N_ROUNDS+1)];
-	//KeyExpansion(cipher, &key_schedule[0], N_WORDS_CIPHER);
-	
-	// AES(byte plaintext[4*N_COLS], byte cipher[4*N_COLS], word w[N_COLS*(N_ROUNDS+1)])
-	// Nr = N_ROUNDS = 10, Nb = N_COLS = 4, in = plaintext, out = cipher, w = Cipher Key
-	
-	BYTE state[4 * N_COLS];
-	for(i = 0; i < (4 * N_COLS); i++)
-	{
-		state[i] = charsToHex(plaintext[2*i], plaintext[2*i+1]);
-	}
-
-	printf("\nTesting State \n");
-
-	print_state(state);
-
-	AddRoundKey(state);
-
-	print_state(state);
-
-	// strcpy(state , plaintext);
-	// state = plaintext;
-	/*AddRoundKey(&state[0], &key_schedule[0]);
-	int round;
-	for(round = 1; round <= N_ROUNDS-1; round++)
-	{
-		SubBytes(&state[0]);
-		ShiftRows(&state[0]);
-		MixColumns(&state[0]);
-		AddRoundKey(&state[0], &key_schedule[round * N_COLS]);
-	}
-	SubBytes(&state[0]);
-	ShiftRows(&state[0]);
-	AddRoundKey(&state[0], &key_schedule[N_ROUNDS * N_COLS]);
-	// cipher = state + "\n";
-	*/
-
-	/*printf("\nBefore test:\n");
-	for(i = 0; i < 32; i+=2)
-	{
-		printf("%02x", charsToHex(state[i], state[i+1])&0xFF);
-		// fflush(stdout);
-	}
-	printf("\n");
-
-	// ShiftRows test
-
-	// Display the encrypted message.
-	printf("\nAfter test:\n");
-	for(i = 0; i < 32; i+=2)
-	{
-		//if(plaintext[i] == 0) printf("0");
-		printf("%02x", charsToHex(state[i], state[i+1])&0xFF);
-	}
-	printf("\n");
-
-	BYTE a1 = 0x01;
-	BYTE a2 = 0x02;
-	BYTE a3 = 0x03;
-	BYTE a4 = 0x04;
-	ShiftRow_1Byte(&a1, &a2, &a3, &a4);
-	printf("%02x %02x %02x %02x \n", a1 & 0xFF, a2 & 0xFF, a3 & 0xFF, a4 & 0xFF);
-	a1 = 0x01;
-	a2 = 0x02;
-	a3 = 0x03;
-	a4 = 0x04;
-	ShiftRow_2Byte(&a1, &a2, &a3, &a4);
-	printf("%02x %02x %02x %02x \n", a1 & 0xFF, a2 & 0xFF, a3 & 0xFF, a4 & 0xFF);
-	a1 = 0x01;
-	a2 = 0x02;
-	a3 = 0x03;
-	a4 = 0x04;
-	ShiftRow_3Byte(&a1, &a2, &a3, &a4);
-	printf("%02x %02x %02x %02x \n", a1 & 0xFF, a2 & 0xFF, a3 & 0xFF, a4 & 0xFF);*/
-
 	return 0;
 }
