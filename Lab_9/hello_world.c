@@ -266,6 +266,8 @@ int main()
 			while (*to_sw_sig != 0);
 		}
 		printf ("\n");
+		*to_hw_sig = 0;	// Set HW signal to 0 to exit READ_MSG/MSG_ACK loop
+
 		printf("\nEnter key:\n");
 		scanf ("%s", key);
 		printf("\nTransmitting key...\n");
@@ -276,12 +278,13 @@ int main()
 			*to_hw_sig = 2;
 			// was (str[i], str[i+1]), but method only needs one char
 			*to_hw_port = charsToHex(key[i], key[i+1]);
-			printf("Checking key sw_sig: %d", *to_sw_sig);
+			//printf("Checking key sw_sig: %d", *to_sw_sig);
 			while (*to_sw_sig != 1);
 			*to_hw_sig = 1;
 			while (*to_sw_sig != 0);
 		}
 		printf ("\n");
+		*to_hw_sig = 3;	// Set HW signal to 3 to exit READ_KEY/KEY_ACK loop
 
 		// Key Expansion and AES encryption using week 1's AES algorithm.
 
@@ -312,7 +315,7 @@ int main()
 		printf("\nEncrypted message is\n");
 		for(i = 0; i < 32; i+=2)
 		{
-			printf("%x", charsToHex(plaintext[i], plaintext[i+1]));
+			printf("%x", charsToHex(plaintext[i], plaintext[i+1])&0xFF);
 			// fflush(stdout);
 		}
 
