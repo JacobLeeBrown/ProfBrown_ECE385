@@ -49,7 +49,7 @@ char charsToHex(char c1, char c2)
 	return (hex1 << 4) + hex2;
 }
 
-WORD* make_word(BYTE b1, BYTE b2, BYTE b3, BYTE b4)
+WORD make_word(BYTE b1, BYTE b2, BYTE b3, BYTE b4)
 {
 	WORD w = 0x01000000 * b1 +
 			 0x00010000 * b2 +
@@ -79,36 +79,32 @@ void AddRoundKey(BYTE *state, WORD * round_key_start)
 	}
 }
 
+BYTE subByte(BYTE b)
+{
+	//break each byte into 2 nibbles
+	BYTE b_L = b & 0x000F;
+	BYTE b_M = (0 >> 4) & 0x000F;
+
+	//get results - "first nibble in the first index (row),
+	//				 second nibble in the second index (column)"
+	BYTE subbed = aes_sbox[b_M][b_L];
+
+	return subbed;
+}
+
 /**
  * SubWord
  * Same as SubBytes(), but acts only on a single word at a time
  */
 void SubWord(WORD *w)
 {
-	BYTE b1 = *w & 0x00FF;			//Grab the least significant byte
-	BYTE b2 = (*w >> 8) & 0x00FF;	//Grab the second byte
-	BYTE b3 = (*w >> 16) & 0x00FF;	//Grab the third byte
-	BYTE b4 = (*w >> 24) & 0x00FF;	//Grab the most significant byte
-
-	//break each byte into 2 nibbles
-	BYTE b1_L = b1 & 0x000F;
-	BYTE b1_M = (b1 >> 4) & 0x000F;
-	BYTE b2_L = b2 & 0x000F;
-	BYTE b2_M = (b2 >> 4) & 0x000F;
-	BYTE b3_L = b3 & 0x000F;
-	BYTE b3_M = (b3 >> 4) & 0x000F;
-	BYTE b4_L = b4 & 0x000F;
-	BYTE b4_M = (b4 >> 4) & 0x000F;
-
-	//get results - "first nibble in the first index (row),
-	//				 second nibble in the second index (column)"
-	BYTE r1 = aes_sbox[b1_M][b1_L];
-	BYTE r2 = aes_sbox[b2_M][b2_L];
-	BYTE r3 = aes_sbox[b3_M][b3_L];
-	BYTE r4 = aes_sbox[b4_M][b4_L];
+	BYTE b0 = *w & 0x00FF;			//Grab the least significant byte
+	BYTE b1 = (*w >> 8) & 0x00FF;	//Grab the second byte
+	BYTE b2 = (*w >> 16) & 0x00FF;	//Grab the third byte
+	BYTE b3 = (*w >> 24) & 0x00FF;	//Grab the most significant byte
 
 	//combine results - r1 is least significant byte, r4 is most significant byte
-	*w = make_word(r4, r3, r2, r1);
+	*w = make_word(subByte(b0), subByte(b1), subByte(b2), subByte(b3));
 }
 
 /**
@@ -117,10 +113,13 @@ void SubWord(WORD *w)
  */
 void SubBytes(BYTE *state)
 {
-	SubWord(make_word(state[0], state[1], state[2], state[3]));
-	SubWord(make_word(state[4], state[5], state[6], state[7]));
-	SubWord(make_word(state[8], state[9], state[10], state[11]));
-	SubWord(make_word(state[12], state[13], state[14], state[15]));
+	int i;
+	// For every byte in the current state, replace it with
+	// the corresponding byte from the Rijndael S-Box matrix
+	for(i = 0; i < (4*N_COLS); i++)
+	{
+		state[i] = subByte(state[i]);
+	}
 }
 
 /**
@@ -172,9 +171,9 @@ void ShiftRow_3Byte(BYTE *x0, BYTE *x1, BYTE *x2, BYTE *x3)
 
 void ShiftRows(BYTE *state)
 {
-	ShiftRow_1Byte(state[1], state[5], state[9], state[13]);
-	ShiftRow_2Byte(state[2], state[6], state[10], state[14]);
-	ShiftRow_3Byte(state[3], state[7], state[11], state[15]);
+	ShiftRow_1Byte(&state[1], &state[5], &state[9], &state[13]);
+	ShiftRow_2Byte(&state[2], &state[6], &state[10], &state[14]);
+	ShiftRow_3Byte(&state[3], &state[7], &state[11], &state[15]);
 }
 
 /**
