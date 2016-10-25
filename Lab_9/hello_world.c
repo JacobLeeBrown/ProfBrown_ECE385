@@ -87,9 +87,7 @@ BYTE subByte(BYTE b)
 
 	//get results - "first nibble in the first index (row),
 	//				 second nibble in the second index (column)"
-	BYTE subbed = aes_sbox[b_M][b_L];
-
-	return subbed;
+	return aes_sbox[b_M][b_L];
 }
 
 /**
