@@ -136,9 +136,29 @@ void RotWord(WORD *w)
 								//moved to the last byte
 }
 
+/**
+ * MixColumns
+ * Multiply each column by matrix as shown in GF(2^8)
+ * MixColumns performs matrix multiplication with each Word
+ * 	wi = {a(0,i),a(1,i), a(2,i),a(3,i)}^Transpose under Rijndael’s finite field
+ * – ({02} dot a) can be implemented by bit-wise left shift then a conditional
+ *    bitwise XOR with {1b} if the 8th bit before the shift is 1
+ * – It is also possible to use a pre-computed lookup table gf_mul[256][6]
+ */
 void MixColumns(BYTE *state)
 {
+	int i;
+	for(i = 0; i < (4*N_COLS); i+=4){
+		BYTE bi0 = gf_mul[state[i]][0] ^ gf_mul[state[i+1]][1] ^ state[i+2] ^ state[i+3];
+		BYTE bi1 = state[i] ^ gf_mul[state[i+1]][0] ^ gf_mul[state[i+2]][1] ^ state[i+3];
+		BYTE bi2 = state[i] ^ state[i+1] ^ gf_mul[state[i+2]][0] ^ gf_mul[state[i+3]][1];
+		BYTE bi3 = gf_mul[state[i]][1] ^ state[i+1] ^ state[i+2] ^ gf_mul[state[i+3]][0];
 
+		state[i] = bi0;
+		state[i+1] = bi1;
+		state[i+2] = bi2;
+		state[i+3] = bi3;
+	}
 }
 
 void ShiftRow_1Byte(BYTE *x0, BYTE *x1, BYTE *x2, BYTE *x3)
