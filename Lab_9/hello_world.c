@@ -49,7 +49,7 @@ char charsToHex(char c1, char c2)
 	return (hex1 << 4) + hex2;
 }
 
-WORD make_word(BYTE b1, BYTE b2, BYTE b3, BYTE b4)
+WORD* make_word(BYTE b1, BYTE b2, BYTE b3, BYTE b4)
 {
 	WORD w = 0x01000000 * b1 +
 			 0x00010000 * b2 +
@@ -108,7 +108,7 @@ void SubWord(WORD *w)
 	BYTE r4 = aes_sbox[b4_M][b4_L];
 
 	//combine results - r1 is least significant byte, r4 is most significant byte
-	*w = (r4 << 24) | (r3 << 16) | (r2 << 8) | (r1);
+	*w = make_word(r4, r3, r2, r1);
 }
 
 /**
@@ -117,7 +117,10 @@ void SubWord(WORD *w)
  */
 void SubBytes(BYTE *state)
 {
-
+	SubWord(make_word(state[0], state[1], state[2], state[3]));
+	SubWord(make_word(state[4], state[5], state[6], state[7]));
+	SubWord(make_word(state[8], state[9], state[10], state[11]));
+	SubWord(make_word(state[12], state[13], state[14], state[15]));
 }
 
 /**
