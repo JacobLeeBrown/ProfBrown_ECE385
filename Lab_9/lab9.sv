@@ -83,20 +83,20 @@ module lab9(  	  input			CLOCK_50,
 					);
 									
 					// Displays the first 4 and the last 4 digits of the received message
-					HexDriver        Hex0 (.In0(msg_en[3:0]),
+					HexDriver        Hex0 (.In0(aes_key[3:0]), //changed msg_en to aes_key for every hex
 											     .Out0(HEX0) );
-					HexDriver        Hex1 (.In0(msg_en[7:4]),
+					HexDriver        Hex1 (.In0(aes_key[7:4]),
 											     .Out0(HEX1) );
-					HexDriver        Hex2 (.In0(msg_en[11:8]),
+					HexDriver        Hex2 (.In0(aes_key[11:8]),
 											     .Out0(HEX2) );
-					HexDriver        Hex3 (.In0(msg_en[15:12]),
+					HexDriver        Hex3 (.In0(aes_key[15:12]),
 											     .Out0(HEX3) );
-					HexDriver        Hex4 (.In0(msg_en[115:112]),
+					HexDriver        Hex4 (.In0(aes_key[115:112]),
 											     .Out0(HEX4) );
-					HexDriver        Hex5 (.In0(msg_en[119:116]),
+					HexDriver        Hex5 (.In0(aes_key[119:116]),
 											     .Out0(HEX5) );
-					HexDriver        Hex6 (.In0(msg_en[123:120]),
+					HexDriver        Hex6 (.In0(aes_key[123:120]),
 											     .Out0(HEX6) );
-					HexDriver        Hex7 (.In0(msg_en[127:124]),
+					HexDriver        Hex7 (.In0(aes_key[127:124]),
 											     .Out0(HEX7) );							  
 endmodule
