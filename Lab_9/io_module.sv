@@ -935,7 +935,6 @@ module io_module (		input			 		clk,
 					to_sw_sig = 2'd0;
 				end
 				
-				// TODO
 			endcase
 		end
 	

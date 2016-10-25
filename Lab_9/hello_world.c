@@ -12,7 +12,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "aes.c"
+#include "aes.h"
 
 #define to_hw_port (volatile char*) 0x00000050
 #define to_hw_sig (volatile char*) 	0x00000040
@@ -58,7 +58,7 @@ WORD make_word(BYTE b1, BYTE b2, BYTE b3, BYTE b4)
 	return w;
 }
 
-// TODO: AES Encryption related function calls
+// AES Encryption related function calls
 
 /**
  * AddRoundKey
@@ -221,19 +221,21 @@ void KeyExpansion(BYTE key[33], WORD *w, int Nk){
 		// if the current word is the first word of a round key
 		if(i % Nk == 0)
 		{
+			//printf("");
 			// run special algorithm for first word of a round key
 			RotWord(&wtemp);
 			SubWord(&wtemp);
 			wtemp ^= Rcon[i / Nk];
 		}
 		// assign the appropriately modified word to the corresponding word in the key_schedule
+		//printf("Key Schedule Words: %d = %04x", i, (w[i-1] ^ wtemp));
 		w[i] = w[i-1] ^ wtemp;
 	}
 }
 
 int main()
 {
-	// int i; // Unused for week 1, may be needed in week 2 (Jacob)
+	int i;
 	BYTE plaintext[33]; //should be 1 more character to account for string terminator
 	BYTE key[33];
 	BYTE cipher[33];
@@ -249,20 +251,46 @@ int main()
 		*to_hw_sig = 0;
 		printf("\n");
 
-		printf("\nEnter plain text:\n");
+		printf("\nEnter message:\n");
 		scanf ("%s", plaintext);
+		printf("\nTransmitting message...\n");
+		for (i = 0; i < 32; i+=2)
+		{
+			// (charToHex(str[i])&0xFF)
+			printf("Sending byte: %d = %x\n", i/2, charsToHex(plaintext[i], plaintext[i+1])&0xFF);
+			*to_hw_sig = 1;
+			// was (str[i], str[i+1]), but method only needs one char
+			*to_hw_port = charsToHex(plaintext[i], plaintext[i+1]);
+			while (*to_sw_sig != 1);
+			*to_hw_sig = 2;
+			while (*to_sw_sig != 0);
+		}
 		printf ("\n");
 		printf("\nEnter key:\n");
 		scanf ("%s", key);
+		printf("\nTransmitting key...\n");
+		for (i = 0; i < 32; i+=2)
+		{
+			// (charToHex(str[i])&0xFF)
+			printf("Sending byte: %d = %x\n", i/2, charsToHex(key[i], key[i+1])&0xFF);
+			*to_hw_sig = 2;
+			// was (str[i], str[i+1]), but method only needs one char
+			*to_hw_port = charsToHex(key[i], key[i+1]);
+			printf("Checking key sw_sig: %d", *to_sw_sig);
+			while (*to_sw_sig != 1);
+			*to_hw_sig = 1;
+			while (*to_sw_sig != 0);
+		}
 		printf ("\n");
+
+		// Key Expansion and AES encryption using week 1's AES algorithm.
 
 		WORD key_schedule[N_COLS*(N_ROUNDS+1)];
 		KeyExpansion(cipher, &key_schedule[0], N_WORDS_CIPHER);
 
-		// TODO: Key Expansion and AES encryption using week 1's AES algorithm.
 		// AES(byte plaintext[4*N_COLS], byte cipher[4*N_COLS], word w[N_COLS*(N_ROUNDS+1)])
 		// Nr = N_ROUNDS = 10, Nb = N_COLS = 4, in = plaintext, out = cipher, w = Cipher Key
-		BYTE state[(4 * N_COLS) + 1];
+		// BYTE state[(4 * N_COLS) + 1];
 		// strcpy(state , plaintext);
 		// state = plaintext;
 		AddRoundKey(&plaintext[0], &key_schedule[0]);
@@ -274,14 +302,20 @@ int main()
 			MixColumns(&plaintext[0]);
 			AddRoundKey(&plaintext[0], &key_schedule[round * N_COLS]);
 		}
-		SubBytes(state);
-		ShiftRows(state);
-		AddRoundKey(state, &key_schedule[N_ROUNDS * N_COLS]);
+		SubBytes(&plaintext[0]);
+		ShiftRows(&plaintext[0]);
+		AddRoundKey(&plaintext[0], &key_schedule[N_ROUNDS * N_COLS]);
 		// cipher = state + "\n";
 
 
-		// TODO: display the encrypted message.
+		// Display the encrypted message.
 		printf("\nEncrypted message is\n");
+		for(i = 0; i < 32; i+=2)
+		{
+			printf("%x", charsToHex(plaintext[i], plaintext[i+1]));
+			// fflush(stdout);
+		}
+
 
 		// ~~~ All Week 2 ~~~ (Jacob)
 
