@@ -12,6 +12,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "aes.h"
 
 #define to_hw_port 	(char*) 			0x00000050
@@ -19,11 +20,13 @@
 #define to_sw_port 	(volatile char*) 	0x00000030
 #define to_sw_sig 	(volatile char*) 	0x00000020
 
-#define N_ROUNDS 		10		// self-defined constant (Jacob)
-#define N_COLS   		4 		// self-defined constant (Jacob)
-#define N_WORDS_CIPHER	4		// self-defined constant (Jacob)
+#define N_ROUNDS 		10		// The number of total rounds in the AES Encryption algorithm
+#define N_COLS   		4 		// The number of columns in a state
+#define N_WORDS_CIPHER	4		// The number of 32-bit words in the Cipher Key
 
-/* ~~~ Helper functions ~~~ */
+/**********************************************/
+/**         ~~~ Helper Functions ~~~         **/
+/**********************************************/
 
 /* Functions that turn characters into hex values */
 
@@ -55,7 +58,14 @@ unsigned char charsToHex(char c1, char c2)
 
 /* Our defined helper functions */
 
-// Takes four Bytes and returns a word comstructed from them
+/**
+ * Takes four Bytes and constructs a 4-Byte word out of them.
+ *
+ * @param b1 Byte that will be bits [31:24] of the constructed word
+ * @param b2 Byte that will be bits [23:16] of the constructed word
+ * @param b3 Byte that will be bits [15:8] of the constructed word
+ * @param b4 Byte that will be bits [7:0] of the constructed word
+ */
 WORD make_word(BYTE b1, BYTE b2, BYTE b3, BYTE b4)
 {
 	WORD w = 0x01000000 * b1 +
@@ -65,7 +75,26 @@ WORD make_word(BYTE b1, BYTE b2, BYTE b3, BYTE b4)
 	return w;
 }
 
-// Prints state in 4 x 4 Byte column-major order
+/**
+ * Prints a 4-Byte hexadeximal word Byte by Byte.
+ * 
+ * @param w The word to be printed
+ */
+void print_word(WORD *w)
+{
+	BYTE b0 = *w & 0x00FF;			//Grab the least significant byte
+	BYTE b1 = (*w >> 8) & 0x00FF;	//Grab the second byte
+	BYTE b2 = (*w >> 16) & 0x00FF;	//Grab the third byte
+	BYTE b3 = (*w >> 24) & 0x00FF;	//Grab the most significant byte
+
+	printf("%02x %02x %02x %02x\n", b3, b2, b1, b0);
+}
+
+/**
+ * Prints a 16-Byte array in 4x4 Byte column-major order.
+ * 
+ * @param state The state to be printed
+ */
 void print_state(BYTE * state)
 {
 	printf("%02x %02x %02x %02x\n", state[0], state[4], state[8], state[12]);
@@ -75,44 +104,42 @@ void print_state(BYTE * state)
 	printf ("\n");
 }
 
-// Prints specified RoundKey of the Key Schedule
+/**
+ * Prints a 16-Byte Roundkey in 4x4 Byte column-major order.
+ * 
+ * @param ks The KeySchedule
+ * @param index The start of the desired round in the KeySchedule array
+ */
 void print_key_schedule(WORD* ks, int index)
 {
 	int i;
 	for(i = 0; i < 4; i++)
-		BYTE b0 = ks[index] >> (8 * i) & 0x00FF;		//Grab the least significant byte
-		BYTE b1 = (ks[index+1] >> (8 * i)) & 0x00FF;	//Grab the second byte
-		BYTE b2 = (ks[index+2] >> (8 * i)) & 0x00FF;	//Grab the third byte
-		BYTE b3 = (ks[index+3] >> (8 * i)) & 0x00FF;	//Grab the most significant byte
+	{
+		BYTE b0 = (ks[(4*index)] >> (24 - (8 * i))) & 0xFF;		// Correct byte from the first Word
+		BYTE b1 = (ks[(4*index)+1] >> (24 - (8 * i))) & 0xFF;	// Correct byte from the second Word
+		BYTE b2 = (ks[(4*index)+2] >> (24 - (8 * i))) & 0xFF;	// Correct byte from the third Word
+		BYTE b3 = (ks[(4*index)+3] >> (24 - (8 * i))) & 0xFF;	// Correct byte from the fourth Word
 		printf("%02x %02x %02x %02x\n", b0, b1, b2, b3);
+	}
+	printf("\n");
 }
 
-// AES Encryption related function calls
+/**********************************************/
+/** ~~~ AES Encryption related functions ~~~ **/
+/**********************************************/
 
 /**
- * AddRoundKey
- * XORs each Byte with the corresponding Byte from the current RoundKey
- * – Each Round of the algorithm uses different RoundKeys
- * – Each RoundKey is generated from the previous RoundKey
- * – RoundKeys can be generated either altogether at the beginning of the AES algorithm,
- *   or during each round
+ * Returns the designated Byte using the Rijndael S-Box.
+ *
+ * @param b The Byte that defines the index of the substituting Byte
+ *
+ * @return The proper Byte from the Rijndael S-Box
  */
-void AddRoundKey(BYTE *state, WORD * round_key_start)
-{
-	int i;
-	// for all 16 bytes in State and the current round_key
-	for(i = 0; i < (4 * N_COLS); i++)
-	{
-		// update state's bytes by XOR-ing with corresponding round_key byte
-		state[i] ^= round_key_start[i];
-	}
-}
-
 BYTE subByte(BYTE b)
 {
 	//break each byte into 2 nibbles
 	BYTE b_L = b & 0x000F;
-	BYTE b_M = (0 >> 4) & 0x000F;
+	BYTE b_M = (b >> 4) & 0x000F;
 
 	//get results - "first nibble in the first index (row),
 	//				 second nibble in the second index (column)"
@@ -120,8 +147,25 @@ BYTE subByte(BYTE b)
 }
 
 /**
- * SubWord
- * Same as SubBytes(), but acts only on a single word at a time
+ * Rotates a 4-Byte word circularly left by 1 Byte.
+ *
+ * @param w The word to shift
+ */
+void RotWord(WORD *w)
+{
+	WORD temp = 0x00000000;		// Create an empty 4-byte temp variable
+	temp = *w & 0xFF000000;		// Bit-mask first byte of word w and store in temp
+	temp >>= 24;				// Shift temp right by 3 bytes
+	*w <<= 8;					// Shift word w by 1 byte
+	*w &= 0xFFFFFFFF;			// Bit-mask whole word to remove access bits
+	*w |= temp;					// Logical OR such that word w now has the first byte
+								// moved to the last byte
+}
+
+/**
+ * Substitutes a word based on the Rijndael S-Box.
+ *
+ * @param w The word to shift
  */
 void SubWord(WORD *w)
 {
@@ -131,12 +175,15 @@ void SubWord(WORD *w)
 	BYTE b3 = (*w >> 24) & 0x00FF;	//Grab the most significant byte
 
 	//combine results - r1 is least significant byte, r4 is most significant byte
-	*w = make_word(subByte(b0), subByte(b1), subByte(b2), subByte(b3));
+	*w = make_word(subByte(b3), subByte(b2), subByte(b1), subByte(b0));
 }
 
 /**
- * SubBytes
- * Substitutes bytes of the current state based on the Rijndael S-box
+ * Substitutes bytes of the current state based on the Rijndael S-box. To save computation, a LUT is
+ * implemented. The two hex values of each byte are used to reference a row and coloumn of the
+ * Rijndael S-box.
+ *
+ * @param state Pointer to the current state
  */
 void SubBytes(BYTE *state)
 {
@@ -150,27 +197,40 @@ void SubBytes(BYTE *state)
 }
 
 /**
- * RotWord
- * Rotates 4-Byte word left
+ * Cicularly left shifts the nth row of the current state by n Bytes. Acts on all rows.
+ *
+ * @param state Pointer to the current state
  */
-void RotWord(WORD *w)
+void ShiftRows(BYTE *state)
 {
-	WORD temp = 0x00000000;		//Create an empty 4-byte temp variable
-	temp = *w & 0xFF000000;		//Bit-mask first byte of word w and store in temp
-	temp >>= 24;				//Shift temp right by 3 bytes
-	*w <<= 8;					//Shift word w by 1 byte
-	*w |= temp;					//Logical OR such that word w now has the first byte
-								//moved to the last byte
+	// Shift first row by 1 Byte
+	BYTE x1_temp = state[1];
+	state[1] = state[5];
+	state[5] = state[9];
+	state[9] = state[13];
+	state[13] = x1_temp;
+
+	// Shift second row by 2 Bytes
+	BYTE x2_temp = state[2];
+	BYTE x6_temp = state[6];
+	state[2] = state[10];
+	state[6] = state[14];
+	state[10] = x2_temp;
+	state[14] = x6_temp;
+
+	// Shift third row by 3 Bytes (or 1 Byte the other way)
+	BYTE x15_temp = state[15];
+	state[15] = state[11];
+	state[11] = state[7];
+	state[7] = state[3];
+	state[3] = x15_temp;
 }
 
 /**
- * MixColumns
- * Multiply each column by matrix as shown in GF(2^8)
- * MixColumns performs matrix multiplication with each Word
- * 	wi = {a(0,i),a(1,i), a(2,i),a(3,i)}^Transpose under Rijndael’s finite field
- * – ({02} dot a) can be implemented by bit-wise left shift then a conditional
- *    bitwise XOR with {1b} if the 8th bit before the shift is 1
- * – It is also possible to use a pre-computed lookup table gf_mul[256][6]
+ * Multiplies each column by matrix as shown in GF(2^8) MixColumns performs matrix multiplication
+ * with each Word under Rijndael’s finite field. To save computation, a LUT is implementated.
+ *
+ * @param state Pointer to the current state
  */
 void MixColumns(BYTE *state)
 {
@@ -188,83 +248,116 @@ void MixColumns(BYTE *state)
 	}
 }
 
-void ShiftRow_1Byte(BYTE *x0, BYTE *x1, BYTE *x2, BYTE *x3)
+/**
+ * XORs each Byte of the current state with the corresponding Byte from the current RoundKey.
+ *
+ * @param state The current state of the encryption algorithm.
+ * @param round_key The current RoundKey
+ */
+void AddRoundKey(BYTE* state, WORD* round_key)
 {
-	BYTE x0_temp = *x0;
-	*x0 = *x1;
-	*x1 = *x2;
-	*x2 = *x3;
-	*x3 = x0_temp;
-}
-
-void ShiftRow_2Byte(BYTE *x0, BYTE *x1, BYTE *x2, BYTE *x3)
-{
-	BYTE x0_temp = *x0;
-	BYTE x1_temp = *x1;
-	*x0 = *x2;
-	*x1 = *x3;
-	*x2 = x0_temp;
-	*x3 = x1_temp;
-}
-
-void ShiftRow_3Byte(BYTE *x0, BYTE *x1, BYTE *x2, BYTE *x3)
-{
-	BYTE x3_temp = *x3;
-	*x3 = *x2;
-	*x2 = *x1;
-	*x1 = *x0;
-	*x0 = x3_temp;
-}
-
-void ShiftRows(BYTE *state)
-{
-	ShiftRow_1Byte(&state[1], &state[5], &state[9], &state[13]);
-	ShiftRow_2Byte(&state[2], &state[6], &state[10], &state[14]);
-	ShiftRow_3Byte(&state[3], &state[7], &state[11], &state[15]);
+	int i;
+	// For all 16 bytes in State and the current round_key
+	for(i = 0; i < (4 * N_COLS); i++)
+	{
+		// Update state's bytes by XOR-ing with corresponding round_key byte
+		state[i] ^= ((round_key[i/4] >> (24 - (8 * (i % 4)))) & 0xFF);
+	}
 }
 
 /**
- * KeyExpansion
- * Generates a RoundKey at a time based on the previous RoundKey (use the Cipher Key
- * to generate the first RoundKey)
- * – RotWord() – circularly shift each Byte in a Word up by 1 Byte
- * – SubWord() – identical to SubBytes()
- * – Rcon() – xor the Word with the corresponding Word from the Rcon lookup table
+ * Generates a RoundKey for every round of the AES encryption process. All of these keys are stored
+ * contiguously in the Key Schedule and are based off the previous RoundKey. The first RoundKey is
+ * the given Cipher Key.
+ *
+ * @param key The original Cipher Key
+ * @param ks The Key Schedule for storing the RoundKeys
+ * @param Nk The number of 32 bit words in the Cipher Key
  */
-void KeyExpansion(BYTE key[33], WORD *w, int Nk){
+void KeyExpansion(BYTE *key, WORD *ks, int Nk){
 	int i;
 	// Assign the key to the first Round Key in key_schedule
 	for(i = 0; i < Nk; i++)
 	{
 		// Since key is just an array of bytes, construct the word from individual bytes
 		// and assign it to the respective word in the key_schedule
-		w[i] = make_word(key[4*i], key[4*i+1], key[4*i+2], key[4*i+3]);
+		ks[i] = make_word(key[4*i], key[4*i+1], key[4*i+2], key[4*i+3]);
 	}
 	//	for every following word in key_schedule
 	for(i = Nk; i < N_COLS*(N_ROUNDS+1); i++)
 	{
 		// temp will hold the previous word
-		WORD wtemp = w[i-1];
+		WORD temp = ks[i-1];
 		// if the current word is the first word of a round key
 		if(i % Nk == 0)
 		{
 			//printf("");
 			// run special algorithm for first word of a round key
-			RotWord(&wtemp);
-			SubWord(&wtemp);
-			wtemp ^= Rcon[i / Nk];
+			RotWord(&temp);
+			//printf("After RotWord:  "); print_word(&temp);
+			SubWord(&temp);
+			//printf("After SubWord:  "); print_word(&temp);
+			//printf("Rcon(%02d, :) :   ", i+1); print_word(&(Rcon[(i / Nk)-1]));
+			temp ^= Rcon[(i / Nk)-1];
+			//printf("After Rcon XOR: "); print_word(&temp); printf("\n");
 		}
 		// assign the appropriately modified word to the corresponding word in the key_schedule
-		w[i] = w[i-1] ^ wtemp;
+		ks[i] = ks[i-Nk] ^ temp;
 	}
+}
+
+/**
+ * The AES Encryption Algorithm.
+ *
+ * @param plaintext The message to be encrypted
+ * @param cipher The original Cipher Key
+ * @param key_schedule The complete set of 11 RoundKeys
+ */
+BYTE* AES_Encryption(BYTE* state, BYTE* key, WORD* key_schedule)
+{
+	printf("First RoundKey:\n");
+	print_key_schedule(key_schedule, 0);
+	AddRoundKey(state, &key_schedule[0]);
+
+	printf("State after AddRoundKey:\n");
+	print_state(state);
+
+	int round;
+	for(round = 1; round <= N_ROUNDS-1; round++)
+	{
+		printf("State at start of round %d:\n", round); print_state(state);
+
+		SubBytes(state);
+		printf("State after SubBytes:\n"); print_state(state);
+
+		ShiftRows(state);
+		printf("State after ShiftRows:\n"); print_state(state);
+
+		MixColumns(state);
+		printf("State after MixColumns:\n"); print_state(state);
+
+		printf("RoundKey:\n"); print_key_schedule(key_schedule, round);
+		AddRoundKey(state, &key_schedule[round * N_COLS]);
+	}
+	printf("State at start of final round:\n"); print_state(state);
+	SubBytes(state);
+	printf("State after SubBytes:\n"); print_state(state);
+	ShiftRows(state);
+	printf("State after ShiftRows:\n"); print_state(state);
+	printf("RoundKey:\n"); print_key_schedule(key_schedule, N_ROUNDS);
+	AddRoundKey(state, &key_schedule[N_ROUNDS * N_COLS]);
+
+	printf("Final state:\n"); print_state(state);
+
+	return state;
 }
 
 int main()
 {
 	int i;
 	// 33 instead of 32 Bytes because of addition of newline character at the end
-	BYTE plaintext[33]; 
-	BYTE key[33];
+	BYTE plaintext[33];// = 	"ece298dcece298dcece298dcece298dc\n";
+	BYTE cipher[33];// = 		"000102030405060708090a0b0c0d0e0f\n";
 
 	// Start with pressing reset
 	*to_hw_sig = 0;
@@ -274,7 +367,7 @@ int main()
 
 	while (1)
 	{
-		*to_hw_sig = 0;
+		//*to_hw_sig = 0;
 		printf("\n");
 
 		// Acquire the original message
@@ -293,13 +386,6 @@ int main()
 		printf ("\n");
 		*to_hw_sig = 0;	// Set HW signal to 0 to exit READ_MSG/MSG_ACK loop
 
-		// Convert 32 Byte plaintext to condensed 16 Byte state
-		BYTE state[4 * N_COLS];
-		for(i = 0; i < (4 * N_COLS); i++)
-		{
-			state[i] = charsToHex(plaintext[2*i], plaintext[2*i+1]);
-		}
-
 		// Acquire the original key
 		printf("\nEnter cipher:\n");
 		scanf ("%s", cipher);
@@ -308,13 +394,23 @@ int main()
 		{
 			// printf("Checking byte: %d = %02x\n", i/2, charsToHex(cipher[i], cipher[i+1])&0xFF);
 			*to_hw_sig = 2;
-			*to_hw_port = charsToHex(key[i], key[i+1]);
+			*to_hw_port = charsToHex(cipher[i], cipher[i+1]);
 			while (*to_sw_sig != 1);
 			*to_hw_sig = 1;
 			while (*to_sw_sig != 0);
 		}
 		printf ("\n");
 		*to_hw_sig = 3;	// Set HW signal to 3 to exit READ_KEY/KEY_ACK loop
+
+		// Convert 32 Byte plaintext to condensed 16 Byte state
+		BYTE state[4 * N_COLS];
+		for(i = 0; i < (4 * N_COLS); i++)
+		{
+			state[i] = charsToHex(plaintext[2*i], plaintext[2*i+1]);
+		}
+
+		printf("Check Initial State:\n");
+		print_state(state);
 
 		// Convert 32 Byte cipher to condensed 16 Byte key
 		BYTE key[4 * N_WORDS_CIPHER];
@@ -323,36 +419,23 @@ int main()
 			key[i] = charsToHex(cipher[2*i], cipher[2*i+1]);
 		}
 
+		printf("Check Initial Key:\n");
+		print_state(key);
+
 		// Instantiate key_schedule and populate with KeyExpansion
 		WORD key_schedule[N_COLS*(N_ROUNDS+1)];
-		KeyExpansion(key, key_schedule, N_WORDS_CIPHER);
-		// Debugging method to print any RoundKey in the schedule
-		print_key_schedule(key_schedule, 0);
+		KeyExpansion(key, key_schedule, N_WORDS_CIPHER);		
 
-		/* 
-		 * AES(byte plaintext[4*N_COLS], byte cipher[4*N_COLS], word w[N_COLS*(N_ROUNDS+1)])
-		 * Nr = N_ROUNDS = 10, Nb = N_COLS = 4, in = plaintext, out = cipher, w = Cipher Key
-		 */
-		AddRoundKey(state, &key_schedule[0]);
-		int round;
-		for(round = 1; round <= N_ROUNDS-1; round++)
-		{
-			SubBytes(state);
-			ShiftRows(state);
-			MixColumns(state);
-			AddRoundKey(state, &key_schedule[round * N_COLS]);
-		}
-		SubBytes(state);
-		ShiftRows(state);
-		AddRoundKey(state, &key_schedule[N_ROUNDS * N_COLS]);
+		// Call the big Kahuna
+		BYTE* encrypted_msg = AES_Encryption(state, key, key_schedule);
 
 		// Display the encrypted message.
 		printf("\nEncrypted message is\n");
-		for(i = 0; i < 32; i+=2)
+		for(i = 0; i < 16; i++)
 		{
-			printf("%02x", charsToHex(state[i], state[i+1]) & 0xFF);
+			printf("%02x", encrypted_msg[i] & 0xFF);
 		}
-
+		printf("\n");
 
 		// ~~~ All Week 2 ~~~ (Jacob)
 
@@ -393,6 +476,6 @@ int main()
 		printf("Decoded message:\n");
 
 		// TODO: print decoded message*/
-	}
+	//}
 	return 0;
 }
