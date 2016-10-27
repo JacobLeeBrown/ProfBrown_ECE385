@@ -23,6 +23,7 @@
 #define N_ROUNDS 		10		// The number of total rounds in the AES Encryption algorithm
 #define N_COLS   		4 		// The number of columns in a state
 #define N_WORDS_CIPHER	4		// The number of 32-bit words in the Cipher Key
+#define ITERATIONS		10000	// Number of times to run the algorithm
 
 /**********************************************/
 /**         ~~~ Helper Functions ~~~         **/
@@ -354,10 +355,14 @@ BYTE* AES_Encryption(BYTE* state, BYTE* key, WORD* key_schedule)
 
 int main()
 {
-	int i;
+	clock_t begin = clock();
+	
 	// 33 instead of 32 Bytes because of addition of newline character at the end
 	BYTE plaintext[33];// = 	"ece298dcece298dcece298dcece298dc\n";
 	BYTE cipher[33];// = 		"000102030405060708090a0b0c0d0e0f\n";
+
+	bool testing = 0;
+	bool first_run = 1;
 
 	// Start with pressing reset
 	*to_hw_sig = 0;
@@ -365,15 +370,18 @@ int main()
 	printf("Press reset!\n");
 	while (*to_sw_sig != 3);
 
-	while (1)
+	int n;
+	while (n = 0; n < ITERATIONS; i++)
 	{
-		//*to_hw_sig = 0;
+		int i;
+		*to_hw_sig = 0;
 		printf("\n");
 
 		// Acquire the original message
 		printf("\nEnter message:\n");
 		scanf ("%s", plaintext);
 		printf("\nTransmitting message...\n");
+
 		for (i = 0; i < 32; i+=2)
 		{
 			//printf("Checking byte: %d = %02x\n", i/2, charsToHex(plaintext[i], plaintext[i+1])&0xFF);
@@ -476,6 +484,10 @@ int main()
 		printf("Decoded message:\n");
 
 		// TODO: print decoded message*/
+
 	}
+	clock_t end = clock();
+	double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+	printf("\nRan %d iterations in %.02f seconds.", ITERATIONS, time_spent);
 	return 0;
 }
