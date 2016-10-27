@@ -476,6 +476,6 @@ int main()
 		printf("Decoded message:\n");
 
 		// TODO: print decoded message*/
-	//}
+	}
 	return 0;
 }
