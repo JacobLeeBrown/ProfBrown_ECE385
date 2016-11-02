@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "aes.h"
 
 #define to_hw_port 	(char*) 			0x00000050
@@ -23,7 +24,7 @@
 #define N_ROUNDS 		10		// The number of total rounds in the AES Encryption algorithm
 #define N_COLS   		4 		// The number of columns in a state
 #define N_WORDS_CIPHER	4		// The number of 32-bit words in the Cipher Key
-#define ITERATIONS		10000	// Number of times to run the algorithm
+#define ITERATIONS		100	00	// Number of times to run the algorithm
 
 /**********************************************/
 /**         ~~~ Helper Functions ~~~         **/
@@ -316,73 +317,69 @@ void KeyExpansion(BYTE *key, WORD *ks, int Nk){
  */
 BYTE* AES_Encryption(BYTE* state, BYTE* key, WORD* key_schedule)
 {
-	printf("First RoundKey:\n");
-	print_key_schedule(key_schedule, 0);
+	//printf("First RoundKey:\n"); print_key_schedule(key_schedule, 0);
 	AddRoundKey(state, &key_schedule[0]);
 
-	printf("State after AddRoundKey:\n");
-	print_state(state);
+	//printf("State after AddRoundKey:\n"); print_state(state);
 
 	int round;
 	for(round = 1; round <= N_ROUNDS-1; round++)
 	{
-		printf("State at start of round %d:\n", round); print_state(state);
+		//printf("State at start of round %d:\n", round); print_state(state);
 
 		SubBytes(state);
-		printf("State after SubBytes:\n"); print_state(state);
+		//printf("State after SubBytes:\n"); print_state(state);
 
 		ShiftRows(state);
-		printf("State after ShiftRows:\n"); print_state(state);
+		//printf("State after ShiftRows:\n"); print_state(state);
 
 		MixColumns(state);
-		printf("State after MixColumns:\n"); print_state(state);
+		//printf("State after MixColumns:\n"); print_state(state);
 
-		printf("RoundKey:\n"); print_key_schedule(key_schedule, round);
+		//printf("RoundKey:\n"); print_key_schedule(key_schedule, round);
 		AddRoundKey(state, &key_schedule[round * N_COLS]);
 	}
-	printf("State at start of final round:\n"); print_state(state);
+	//printf("State at start of final round:\n"); print_state(state);
 	SubBytes(state);
-	printf("State after SubBytes:\n"); print_state(state);
+	//printf("State after SubBytes:\n"); print_state(state);
 	ShiftRows(state);
-	printf("State after ShiftRows:\n"); print_state(state);
-	printf("RoundKey:\n"); print_key_schedule(key_schedule, N_ROUNDS);
+	//printf("State after ShiftRows:\n"); print_state(state);
+	//printf("RoundKey:\n"); print_key_schedule(key_schedule, N_ROUNDS);
 	AddRoundKey(state, &key_schedule[N_ROUNDS * N_COLS]);
 
-	printf("Final state:\n"); print_state(state);
+	//printf("Final state:\n"); print_state(state);
 
 	return state;
 }
 
 int main()
 {
-	clock_t begin = clock();
 	
 	// 33 instead of 32 Bytes because of addition of newline character at the end
-	BYTE plaintext[33];// = 	"ece298dcece298dcece298dcece298dc\n";
-	BYTE cipher[33];// = 		"000102030405060708090a0b0c0d0e0f\n";
-
-	bool testing = 0;
-	bool first_run = 1;
+	BYTE plaintext[33] = 	"ece298dcece298dcece298dcece298dc\n";
+	BYTE cipher[33] = 		"000102030405060708090a0b0c0d0e0f\n";
 
 	// Start with pressing reset
-	*to_hw_sig = 0;
+	/**to_hw_sig = 0;
 	*to_hw_port = 0;
 	printf("Press reset!\n");
-	while (*to_sw_sig != 3);
+	while (*to_sw_sig != 3);*/
+
+	clock_t begin = clock();
 
 	int n;
-	while (n = 0; n < ITERATIONS; i++)
+	for(n = 0; n < ITERATIONS; n++)
 	{
 		int i;
-		*to_hw_sig = 0;
-		printf("\n");
+		//*to_hw_sig = 0;
+		//printf("\n");
 
 		// Acquire the original message
-		printf("\nEnter message:\n");
-		scanf ("%s", plaintext);
-		printf("\nTransmitting message...\n");
+		//printf("\nEnter message:\n");
+		//scanf ("%s", plaintext);
+		//printf("\nTransmitting message...\n");
 
-		for (i = 0; i < 32; i+=2)
+		/*for (i = 0; i < 32; i+=2)
 		{
 			//printf("Checking byte: %d = %02x\n", i/2, charsToHex(plaintext[i], plaintext[i+1])&0xFF);
 			*to_hw_sig = 1;
@@ -390,15 +387,15 @@ int main()
 			while (*to_sw_sig != 1);
 			*to_hw_sig = 2;
 			while (*to_sw_sig != 0);
-		}
-		printf ("\n");
-		*to_hw_sig = 0;	// Set HW signal to 0 to exit READ_MSG/MSG_ACK loop
+		}*/
+		//printf ("\n");
+		//*to_hw_sig = 0;	// Set HW signal to 0 to exit READ_MSG/MSG_ACK loop
 
 		// Acquire the original key
-		printf("\nEnter cipher:\n");
-		scanf ("%s", cipher);
-		printf("\nTransmitting cipher...\n");
-		for (i = 0; i < 32; i+=2)
+		//printf("\nEnter cipher:\n");
+		//scanf ("%s", cipher);
+		//printf("\nTransmitting cipher...\n");
+		/*for (i = 0; i < 32; i+=2)
 		{
 			// printf("Checking byte: %d = %02x\n", i/2, charsToHex(cipher[i], cipher[i+1])&0xFF);
 			*to_hw_sig = 2;
@@ -407,8 +404,8 @@ int main()
 			*to_hw_sig = 1;
 			while (*to_sw_sig != 0);
 		}
-		printf ("\n");
-		*to_hw_sig = 3;	// Set HW signal to 3 to exit READ_KEY/KEY_ACK loop
+		//printf ("\n");
+		*to_hw_sig = 3;*/	// Set HW signal to 3 to exit READ_KEY/KEY_ACK loop
 
 		// Convert 32 Byte plaintext to condensed 16 Byte state
 		BYTE state[4 * N_COLS];
@@ -417,8 +414,8 @@ int main()
 			state[i] = charsToHex(plaintext[2*i], plaintext[2*i+1]);
 		}
 
-		printf("Check Initial State:\n");
-		print_state(state);
+		//printf("Check Initial State:\n");
+		//print_state(state);
 
 		// Convert 32 Byte cipher to condensed 16 Byte key
 		BYTE key[4 * N_WORDS_CIPHER];
@@ -427,8 +424,8 @@ int main()
 			key[i] = charsToHex(cipher[2*i], cipher[2*i+1]);
 		}
 
-		printf("Check Initial Key:\n");
-		print_state(key);
+		//printf("Check Initial Key:\n");
+		//print_state(key);
 
 		// Instantiate key_schedule and populate with KeyExpansion
 		WORD key_schedule[N_COLS*(N_ROUNDS+1)];
@@ -438,12 +435,26 @@ int main()
 		BYTE* encrypted_msg = AES_Encryption(state, key, key_schedule);
 
 		// Display the encrypted message.
-		printf("\nEncrypted message is\n");
-		for(i = 0; i < 16; i++)
+		//printf("\nEncrypted message is\n");
+		/*for(i = 0; i < 16; i++)
 		{
 			printf("%02x", encrypted_msg[i] & 0xFF);
 		}
 		printf("\n");
+
+		printf("\nTransmitting last key...\n");*/
+		/*for (i = 0; i < 16; i++)
+		{
+			*to_hw_sig = 2;
+			// printf("%02x", (key_schedule[(N_ROUNDS * N_COLS) + i/4] >> (24 - (8 * (i%4)))) & 0xFF);
+			//(ks[(4*index)] >> (24 - (8 * i))) & 0xFF
+			*to_hw_port = (key_schedule[(N_ROUNDS * N_COLS) + i/4] >> (24 - (8 * (i%4)))) & 0xFF;
+			while (*to_sw_sig != 1);
+			*to_hw_sig = 1;
+			while (*to_sw_sig != 0);
+		}
+		//printf ("\n");
+		*to_hw_sig = 3;*/	// Set HW signal to 3 to exit READ_KEY/KEY_ACK loop
 
 		// ~~~ All Week 2 ~~~ (Jacob)
 
@@ -484,10 +495,11 @@ int main()
 		printf("Decoded message:\n");
 
 		// TODO: print decoded message*/
-
+		//while(1);
 	}
 	clock_t end = clock();
 	double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-	printf("\nRan %d iterations in %.02f seconds.", ITERATIONS, time_spent);
+	printf("\nRan %d iterations in %.02f seconds.\n", ITERATIONS, time_spent);
+	printf("Transmitted %.4f Bytes per second", .0064/time_spent);
 	return 0;
 }

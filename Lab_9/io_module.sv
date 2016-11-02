@@ -167,8 +167,8 @@ module io_module (		input			 		clk,
 						next_state = READ_MSG_0;
 					else if (to_hw_sig == 2'd2)
 						next_state = READ_KEY_0;
-					else if (to_hw_sig == 2'd3)
-						next_state = SEND_TO_AES;
+					//else if (to_hw_sig == 2'd3)
+						//next_state = SEND_TO_AES;
 				end
 				
 				// ~~~ Read Message Loop ~~~
